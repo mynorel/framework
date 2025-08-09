@@ -27,7 +27,7 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 - **Prelude Middleware:** Modular pipelines, global and per-sequence, with narrative metaphors.
 - **Services Layer:** Business logic, logging, authorization, theming, and more—injectable and extendable.
 - **Facades:** Thin, expressive, and delegate to services for testability and flexibility.
-- **CLI & Console:** Powerful command system for developer tools and automation.
+- **CLI & Console:** Powerful command system for developer tools, automation, and narrative test running.
 - **Configuration:** All config in `/config`, environment-driven, no magic.
 - **PSR-4 Autoloading:** Modern, Composer-based, no require_once.
 - **Ready for plugins, DI, and extension.**
@@ -86,9 +86,16 @@ project/
 	ChronicleService::note('A new chapter begins.');
 	```
 
+7. **Run Tests (Narrative Style):**
+	```bash
+	php myne test
+	```
+	Runs your PHPUnit test suite with Mynorel's narrative output. Requires PHPUnit (see below).
+
 ---
 
 ## 🧩 Extending Mynorel
+- **Built-in test runner:** Use `php myne test` for narrative test output. Add your own test cases in `tests/`.
 
 - **Add your own services, middleware, or models.**
 - **Swap or extend any service for plugins or custom logic.**
@@ -97,6 +104,7 @@ project/
 ---
 
 ## 📚 Documentation
+- See `/tests/` for test examples and to add your own.
 
 - See `/src/Mynorel/Plotline/README.md` for ORM details.
 - See `/src/Mynorel/Prelude/README.md` for middleware.
@@ -107,3 +115,15 @@ project/
 ## 📝 License
 
 Mynorel is MIT licensed. Crafted with narrative and care.
+
+---
+
+## 🧪 Testing
+
+- Mynorel includes a built-in test runner command: `php myne test`
+- Tests use PHPUnit by default. Install with:
+	```bash
+	composer require --dev phpunit/phpunit
+	```
+- Add your tests in the `tests/` directory.
+- The test runner outputs results in narrative style, matching Mynorel's philosophy.

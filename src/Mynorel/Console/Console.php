@@ -43,6 +43,7 @@ class Console
     $this->register(new \Mynorel\Console\Commands\ListCommand());
     $this->register(new \Mynorel\Console\Commands\HelpCommand());
     $this->register(new \Mynorel\Console\Commands\FlowValidateCommand());
+    $this->register(new \Mynorel\Console\Commands\TestCommand());
     }
 
     /**
