@@ -11,6 +11,47 @@ class PageTurner
     protected array $items;
     protected int $perPage;
     protected int $currentPage;
+
+    /**
+     * Cursor-based pagination: get items after a given cursor (offset or key).
+     * Returns ['items' => [...], 'next_cursor' => int|null, 'prev_cursor' => int|null]
+     */
+    public function cursorChapter($cursor = 0, $limit = null): array
+    {
+        $limit = $limit ?? $this->perPage;
+        $start = (int)$cursor;
+        $items = array_slice($this->items, $start, $limit);
+        $next = ($start + $limit < count($this->items)) ? $start + $limit : null;
+        $prev = ($start - $limit >= 0) ? $start - $limit : null;
+        return [
+            'items' => $items,
+            'next_cursor' => $next,
+            'prev_cursor' => $prev
+        ];
+    }
+
+    /**
+     * Get a narrative summary of the current chapter.
+     */
+    public function chapterSummary(): string
+    {
+        $total = $this->totalChapters();
+        $current = $this->currentPage;
+        $first = $this->isFirstChapter() ? ' (Prologue)' : '';
+        $last = $this->isLastChapter() ? ' (Finale)' : '';
+        return "Chapter $current of $total$first$last";
+    }
+
+    /**
+     * Get a narrative progress bar for the current chapter.
+     */
+    public function progressBar(int $width = 20): string
+    {
+        $total = $this->totalChapters();
+        $current = $this->currentPage;
+        $filled = (int) round(($current / $total) * $width);
+        return '[' . str_repeat('=', $filled) . str_repeat(' ', $width - $filled) . "] $current/$total]";
+    }
     /**
      * Get the total number of items.
      */

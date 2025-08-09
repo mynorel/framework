@@ -9,11 +9,23 @@ use Workerman\Connection\TcpConnection;
  * Herald: Mynorel's narrative WebSocket layer (powered by Workerman).
  * Broadcasts, listens, and narrates real-time events and story fragments.
  */
+
 class Herald
 {
     protected $worker = null;
     protected array $clients = [];
     protected array $channels = [];
+    protected array $sentinels = [];
+
+    /**
+     * Set a sentinel (permission callback) for a channel.
+     * @param string $channel
+     * @param callable $sentinel (function($connection, $payload): bool)
+     */
+    public function setSentinel(string $channel, callable $sentinel): void
+    {
+        $this->sentinels[$channel] = $sentinel;
+    }
 
     /**
      * Start the Herald WebSocket server.
@@ -29,6 +41,17 @@ class Herald
             $payload = json_decode($data, true);
             $channel = $payload['channel'] ?? 'default';
             $message = $payload['message'] ?? $data;
+            // Sentinel check (auth/permission)
+            if (isset($this->sentinels[$channel])) {
+                $allowed = ($this->sentinels[$channel])($connection, $payload);
+                if (!$allowed) {
+                    $connection->send(json_encode([
+                        'error' => 'Access denied by Sentinel',
+                        'channel' => $channel
+                    ]));
+                    return;
+                }
+            }
             $this->channels[$channel][$connection->id] = $connection;
             // Broadcast to all in channel
             foreach ($this->channels[$channel] as $client) {

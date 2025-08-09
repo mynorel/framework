@@ -1,3 +1,26 @@
+## 🍳 Usage Recipes
+
+- **Paginate a list with narrative output:**
+	```php
+	use Mynorel\PageTurner\PageTurner;
+	$items = range(1, 100);
+	$paginator = new PageTurner($items, 10, 2);
+	echo $paginator->chapterSummary(); // Chapter 2 of 10
+	echo $paginator->progressBar();    // [==        ] 2/10
+	$result = $paginator->cursorChapter(10, 10); // Cursor-based
+	```
+
+- **Prompt for user input in CLI:**
+	```php
+	use Mynorel\Console\Support\InteractivePrompt;
+	$name = InteractivePrompt::ask('What is your character name?', 'Alice');
+	$role = InteractivePrompt::menu('Choose your path:', ['Hero', 'Villain', 'Guide']);
+	```
+
+- **Add a CLI command from an extension:**
+	```php
+	$console->register(new \Your\Extension\Commands\CustomCommand());
+	```
 
 
 # Mynorel Framework

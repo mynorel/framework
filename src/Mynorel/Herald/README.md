@@ -1,3 +1,22 @@
+## Channel Sentinels (Permissions & Auth)
+
+Herald supports narrative channel permissions using sentinels:
+
+```php
+// Only allow users with a token to join 'private' channel
+Herald::setSentinel('private', function($connection, $payload) {
+        return isset($payload['token']) && $payload['token'] === 'letmein';
+});
+```
+
+If a client tries to join or send to a channel and the sentinel denies access, they receive:
+
+```json
+{
+    "error": "Access denied by Sentinel",
+    "channel": "private"
+}
+```
 
 # Herald (WebSocket Layer)
 

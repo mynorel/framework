@@ -1,3 +1,19 @@
+## Cursor-based Pagination (Endless Chapters)
+
+PageTurner supports cursor-based pagination for infinite scroll or API use:
+
+```php
+$result = $paginator->cursorChapter($cursor, $limit); // ['items' => [...], 'next_cursor' => ..., 'prev_cursor' => ...]
+```
+
+## Narrative Output
+
+Get a narrative summary and progress bar for the current chapter:
+
+```php
+echo $paginator->chapterSummary(); // e.g. "Chapter 2 of 10"
+echo $paginator->progressBar();    // e.g. [==        ] 2/10
+```
 # PageTurner (Narrative Pagination)
 
 PageTurner is Mynorel’s narrative pagination system. Each page is a chapter, each turn a new view. Use it to paginate lists, models, or any collection in a poetic, expressive way.
