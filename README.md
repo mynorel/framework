@@ -60,6 +60,34 @@ project/
 ---
 
 ## ⚡ Quickstart
+8. **Run an Epic (Job/Task):**
+	```php
+	use Mynorel\Epic\Epic;
+	Epic::register('send_newsletter', function($user) {
+		 // ...send logic...
+		 echo "Newsletter sent to $user\n";
+	});
+	Epic::start('send_newsletter', 'alice@example.com');
+	```
+	Or via CLI:
+	```bash
+	php myne epic send_newsletter alice@example.com
+	php myne epic list
+	```
+
+9. **Switch or Preview Thematic Skins:**
+	```php
+	use Mynorel\ThemeSkins\ThemeSkins;
+	ThemeSkins::register('noir', fn($text) => "\033[1;30m$text\033[0m");
+	ThemeSkins::activate('noir');
+	echo ThemeSkins::format('A dark and stormy night...');
+	```
+	Or via CLI:
+	```bash
+	php myne skin noir
+	php myne skin list
+	php myne skin preview "A dark and stormy night..."
+	```
 
 1. **Install dependencies:**
 	```bash

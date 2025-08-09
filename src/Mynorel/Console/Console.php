@@ -45,6 +45,8 @@ class Console
     $this->register(new \Mynorel\Console\Commands\FlowValidateCommand());
     $this->register(new \Mynorel\Console\Commands\TestCommand());
     $this->register(new \Mynorel\Console\Commands\NarrativeConsoleCommand());
+    $this->register(new \Mynorel\Console\Commands\EpicCommand());
+    $this->register(new \Mynorel\Console\Commands\ThemeSkinCommand());
     }
 
     /**
