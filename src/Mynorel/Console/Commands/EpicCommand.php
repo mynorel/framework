@@ -13,7 +13,7 @@ class EpicCommand implements CommandInterface
         if (isset($input[0]) && $input[0] === 'list') {
             $epics = Epic::list();
             foreach ($epics as $name) {
-                echo "- $name\n";
+                echo \Mynorel\ThemeSkins\ThemeSkins::format("- $name\n");
             }
             return 0;
         }
@@ -21,7 +21,7 @@ class EpicCommand implements CommandInterface
             Epic::start($input[0], ...array_slice($input, 1));
             return 0;
         }
-        echo "Usage: epic <name> [args...] | epic list\n";
+    echo \Mynorel\ThemeSkins\ThemeSkins::format("Usage: epic <name> [args...] | epic list\n");
         return 1;
     }
 }

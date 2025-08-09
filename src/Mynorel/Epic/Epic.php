@@ -32,11 +32,11 @@ class Epic
     public static function start(string $name, ...$args): void
     {
         if (isset(self::$epics[$name])) {
-            echo "[Epic '$name' begins]" . PHP_EOL;
+            echo \Mynorel\ThemeSkins\ThemeSkins::format("[Epic '$name' begins]" . PHP_EOL);
             self::$epics[$name](...$args);
-            echo "[Epic '$name' completed]" . PHP_EOL;
+            echo \Mynorel\ThemeSkins\ThemeSkins::format("[Epic '$name' completed]" . PHP_EOL);
         } else {
-            echo "[Epic '$name' not found]" . PHP_EOL;
+            echo \Mynorel\ThemeSkins\ThemeSkins::format("[Epic '$name' not found]" . PHP_EOL);
         }
     }
 }

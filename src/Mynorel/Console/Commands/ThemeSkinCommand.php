@@ -13,20 +13,20 @@ class ThemeSkinCommand implements CommandInterface
         if (isset($input[0]) && $input[0] === 'list') {
             $skins = ThemeSkins::list();
             foreach ($skins as $name) {
-                echo ($name === ThemeSkins::active() ? '* ' : '  ') . $name . "\n";
+                echo \Mynorel\ThemeSkins\ThemeSkins::format(($name === ThemeSkins::active() ? '* ' : '  ') . $name . "\n");
             }
             return 0;
         }
         if (isset($input[0]) && $input[0] === 'preview' && isset($input[1])) {
-            echo ThemeSkins::format($input[1]) . "\n";
+            echo \Mynorel\ThemeSkins\ThemeSkins::format($input[1]) . "\n";
             return 0;
         }
         if (isset($input[0])) {
             ThemeSkins::activate($input[0]);
-            echo "Skin '{$input[0]}' activated.\n";
+            echo \Mynorel\ThemeSkins\ThemeSkins::format("Skin '{$input[0]}' activated.\n");
             return 0;
         }
-        echo "Usage: skin <name> | skin list | skin preview <text>\n";
+    echo \Mynorel\ThemeSkins\ThemeSkins::format("Usage: skin <name> | skin list | skin preview <text>\n");
         return 1;
     }
 }
