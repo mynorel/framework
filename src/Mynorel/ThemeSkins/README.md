@@ -4,13 +4,20 @@ ThemeSkins lets you reskin Mynorel’s CLI/web output with pluggable narrative t
 
 ## Usage
 
+
+Skins can be registered at runtime or auto-registered in your app's bootstrap. For demo/testing, 'noir' is auto-registered.
+
 ```php
 use Mynorel\ThemeSkins\ThemeSkins;
-
-// Register a skin
-ThemeSkins::register('noir', fn($text) => "\033[1;30m$text\033[0m");
 ThemeSkins::activate('noir');
 echo ThemeSkins::format('A dark and stormy night...');
+```
+
+Or via CLI:
+```bash
+php myne skin noir
+php myne skin list
+php myne skin preview "A dark and stormy night..."
 ```
 
 ## Philosophy

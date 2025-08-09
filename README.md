@@ -33,6 +33,7 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 - **PSR-4 Autoloading:** Modern, Composer-based, no require_once.
 - **Extension System:** Register and load plugins ("side stories") at runtime via the ExtensionManager.
 - **Sentinels & Rituals:** Expressive guards and handlers with contracts for custom workflows.
+- **Scriptorium (Service Container):** Narrative dependency injection and service management for all story elements.
 - **Ready for plugins, DI, and extension.**
 
 ---
@@ -60,6 +61,12 @@ project/
 ---
 
 ## ⚡ Quickstart
+10. **Use the Scriptorium (Service Container):**
+	```php
+	use Mynorel\Scriptorium\Scriptorium;
+	Scriptorium::singleton('bard', fn() => new Bard());
+	$bard = Scriptorium::make('bard');
+	```
 8. **Run an Epic (Job/Task):**
 	```php
 	use Mynorel\Epic\Epic;

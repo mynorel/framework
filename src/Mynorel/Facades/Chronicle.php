@@ -1,27 +1,31 @@
 <?php
 namespace Mynorel\Facades;
 
-use Mynorel\Chronicle\Chronicle as ChronicleCore;
+use Mynorel\Scriptorium\Scriptorium;
 
 /**
  * Chronicle: Facade for narrative logging.
  */
 class Chronicle
 {
+    protected static function service()
+    {
+        return Scriptorium::make('chronicle');
+    }
     public static function note(string $message): void
     {
-        ChronicleCore::note($message);
+        self::service()::note($message);
     }
     public static function warn(string $message): void
     {
-        ChronicleCore::warn($message);
+        self::service()::warn($message);
     }
     public static function chapter(string $message): void
     {
-        ChronicleCore::chapter($message);
+        self::service()::chapter($message);
     }
     public static function interrupt(string $message): void
     {
-        ChronicleCore::interrupt($message);
+        self::service()::interrupt($message);
     }
 }

@@ -4,17 +4,18 @@ Epic is Mynorel’s narrative job/task system. Jobs are "epics" and background t
 
 ## Usage
 
+
+Epics can be registered at runtime or auto-registered in your app's bootstrap. For demo/testing, 'send_newsletter' is auto-registered.
+
 ```php
 use Mynorel\Epic\Epic;
-
-// Register an epic (job)
-Epic::register('send_newsletter', function($user) {
-    // ...send logic...
-    echo "Newsletter sent to $user\n";
-});
-
-// Start an epic
 Epic::start('send_newsletter', 'alice@example.com');
+```
+
+Or via CLI:
+```bash
+php myne epic send_newsletter alice@example.com
+php myne epic list
 ```
 
 ## Philosophy

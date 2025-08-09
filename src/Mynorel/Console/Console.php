@@ -16,7 +16,20 @@ class Console
 
     public function __construct()
     {
-        $this->registerDefaults();
+        // Auto-register a sample epic for demonstration
+        \Mynorel\Epic\Epic::register('send_newsletter', function($user) {
+            echo \Mynorel\ThemeSkins\ThemeSkins::format("Newsletter sent to $user\n");
+        });
+        // Auto-register a sample skin for demonstration
+        \Mynorel\ThemeSkins\ThemeSkins::register('noir', fn($text) => "\033[1;30m$text\033[0m");
+
+        // Register core services in Scriptorium
+    \Mynorel\Scriptorium\Scriptorium::singleton('chronicle', fn() => \Mynorel\Chronicle\Chronicle::class);
+        \Mynorel\Scriptorium\Scriptorium::singleton('theme', fn() => new \Mynorel\Services\ThemeService());
+        \Mynorel\Scriptorium\Scriptorium::singleton('epic', fn() => new \Mynorel\Epic\Epic());
+        \Mynorel\Scriptorium\Scriptorium::singleton('themeskins', fn() => new \Mynorel\ThemeSkins\ThemeSkins());
+    \Mynorel\Scriptorium\Scriptorium::singleton('memory', fn() => new \Mynorel\Services\MemoryService());
+    $this->registerDefaults();
     }
 
     /**
