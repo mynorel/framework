@@ -1,21 +1,4 @@
-13. **Real-time with Herald (WebSocket):**
-   ```php
-   use Mynorel\Facades\Herald;
-   // Start the WebSocket server
-   Herald::start(8080);
-   // Broadcast a message
-   Herald::broadcast('story', 'A new chapter begins!');
-   // Listen for messages
-   Herald::listen('story', function($msg) {
-	   echo "[Herald] $msg\n";
-   });
-   ```
-   Or via CLI:
-   ```bash
-   php myne herald start 8080
-   php myne herald broadcast story "A new chapter begins!"
-   php myne herald listen story
-   ```
+
 
 # Mynorel Framework
 
@@ -228,7 +211,32 @@ Mynorel is MIT licensed. Crafted with narrative and care.
 
 ---
 
+
 ## 🧪 Testing
+
+---
+
+## Real-time with Herald (WebSocket)
+
+Herald brings real-time narrative to Mynorel using Workerman. Broadcast, listen, and narrate live events and story fragments.
+
+```php
+use Mynorel\Facades\Herald;
+// Start the WebSocket server
+Herald::start(8080);
+// Broadcast a message
+Herald::broadcast('story', 'A new chapter begins!');
+// Listen for messages
+Herald::listen('story', function($msg) {
+	echo "[Herald] $msg\n";
+});
+```
+Or via CLI:
+```bash
+php myne herald start 8080
+php myne herald broadcast story "A new chapter begins!"
+php myne herald listen story
+```
 
 - Mynorel includes a built-in test runner command: `php myne test`
 - Tests use PHPUnit by default. Install with:
