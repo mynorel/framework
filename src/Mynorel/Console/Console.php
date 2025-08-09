@@ -67,6 +67,7 @@ class Console
     $this->register(new \Mynorel\Console\Commands\ThemeSkinCommand());
     $this->register(new \Mynorel\Console\Commands\MemoryPalaceCommand());
     $this->register(new \Mynorel\Console\Commands\HeraldCommand());
+    $this->register(new \Mynorel\Console\Commands\DocsGenerateCommand());
     }
 
     /**
