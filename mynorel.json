@@ -1,0 +1,37 @@
+{
+  "name": "mynorel/framework",
+  "version": "0.1.0",
+  "description": "A modular, expressive framework where architecture is rhythm and syntax is soul.",
+  "author": "Jade Monathrae Lewis",
+  "modules": {
+    "plotline": {
+      "description": "Narrative ORM — models as protagonists, queries as turning points.",
+      "namespace": "Mynorel\\Plotline",
+      "config": "config/plotline.php"
+    },
+    "myneral": {
+      "description": "Directive and flow engine — syntax that speaks intention.",
+      "namespace": "Mynorel\\Myneral",
+      "config": "config/myneral.php"
+    },
+    "routing": {
+      "description": "Poetic DSL for defining routes as narrative paths.",
+      "namespace": "Mynorel\\Routing",
+      "config": "config/routing.php"
+    },
+    "cli": {
+      "description": "Narrative command interface — the voice of the framework.",
+      "namespace": "Mynorel\\CLI"
+    },
+    "manifest": {
+      "description": "Framework introspection and philosophy engine.",
+      "namespace": "Mynorel\\Manifest"
+    }
+  },
+  "philosophy": {
+    "modularity": "Each module is a chapter — distinct, but harmonious.",
+    "syntax": "Directives read like intent, not instruction.",
+    "onboarding": "Opening the framework should feel like opening a novel.",
+    "developer_experience": "Joy is a feature, not a side effect."
+  }
+}
