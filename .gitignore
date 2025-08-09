@@ -15,6 +15,7 @@ composer.lock
 
 
 .phpunit.result.cache
+.phpunit.cache/
 
 # CLI artifacts
 myne
