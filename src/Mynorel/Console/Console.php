@@ -29,6 +29,7 @@ class Console
         \Mynorel\Scriptorium\Scriptorium::singleton('epic', fn() => new \Mynorel\Epic\Epic());
         \Mynorel\Scriptorium\Scriptorium::singleton('themeskins', fn() => new \Mynorel\ThemeSkins\ThemeSkins());
     \Mynorel\Scriptorium\Scriptorium::singleton('memory', fn() => new \Mynorel\Services\MemoryService());
+    \Mynorel\Scriptorium\Scriptorium::singleton('memorypalace', fn() => new \Mynorel\MemoryPalace\MemoryPalace());
     $this->registerDefaults();
     }
 
@@ -61,6 +62,7 @@ class Console
     $this->register(new \Mynorel\Console\Commands\NarrativeConsoleCommand());
     $this->register(new \Mynorel\Console\Commands\EpicCommand());
     $this->register(new \Mynorel\Console\Commands\ThemeSkinCommand());
+    $this->register(new \Mynorel\Console\Commands\MemoryPalaceCommand());
     }
 
     /**

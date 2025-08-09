@@ -63,6 +63,25 @@ project/
 
 ## ⚡ Quickstart
 11. **Paginate with PageTurner:**
+12. **Cache with MemoryPalace:**
+	```php
+	use Mynorel\Facades\MemoryPalace;
+	// Store a value
+	MemoryPalace::inscribe('hero', 'Alice', 60); // 60 seconds
+	// Retrieve a value
+	$name = MemoryPalace::recall('hero');
+	// Forget a value
+	MemoryPalace::forget('hero');
+	// Clear all cached fragments
+	MemoryPalace::clear();
+	```
+	Or via CLI:
+	```bash
+	php myne memorypalace inscribe hero Alice
+	php myne memorypalace recall hero
+	php myne memorypalace forget hero
+	php myne memorypalace clear
+	```
 	```php
 	use Mynorel\PageTurner\PageTurner;
 	$items = range(1, 100);
