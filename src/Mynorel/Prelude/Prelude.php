@@ -7,7 +7,9 @@ class Prelude
      * Global Preludes (middleware run for every request/flow).
      * @var array
      */
-    protected static array $global = [];
+    protected static array $global = [
+        \Mynorel\Http\Middleware\CsrfMiddleware::class
+    ];
 
     /**
      * Register one or more global Preludes.

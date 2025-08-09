@@ -16,6 +16,33 @@ Works seamlessly with Myneral's directive syntax to guard flows, layouts, or com
 - `Contracts/PolicyInterface.php` — Policy contract
 - `Policies/EditPostPolicy.php` — Example policy
 
+
+## Authentication (Auth) & Session Integration
+
+Mynorel's Auth layer provides narrative user authentication, now integrated with the Session layer for persistent login:
+
+```php
+use Mynorel\Author\Auth;
+use Mynorel\Session\Session;
+
+// Attempt login
+$success = Auth::attempt($userResolver, $identifier, $password);
+
+// Get the current user (restores from session if available)
+$user = Auth::user($userResolver);
+
+// Check if a user is authenticated
+if (Auth::check()) {
+    // ...
+}
+
+// Log out
+Auth::logout();
+```
+
+The Auth layer uses Session to persist the user's identity between requests. Implement the `Authenticatable` contract on your user model to enable authentication.
+
+---
 ## Usage
 
 ```php

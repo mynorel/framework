@@ -17,7 +17,8 @@ src/
         └── SceneInterface.php
 ```
 
-## Features
+
+- CSRF protection helpers (Csrf)
 
 - Handles requests
 - Resolves chapters (via `Narrative`)
@@ -31,7 +32,25 @@ src/
 GET /publish → invokes Narrative::chapter('publish')
 ```
 
-## Example Flow
+
+## CSRF Protection
+
+Use the `Csrf` helper for CSRF token generation, validation, and template integration:
+
+```php
+use Mynorel\Http\Csrf;
+
+// Get the current CSRF token
+$token = Csrf::token();
+
+// Validate a token from a request
+if (!Csrf::validate($_POST['csrf_token'] ?? null)) {
+    // Invalid or missing token
+}
+
+// Add CSRF field to a form (in a template)
+echo Csrf::field();
+```
 
 1. `Kernel` receives a request.
 2. `Dispatcher` finds the matching chapter via `Narrative::find()`.

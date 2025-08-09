@@ -17,7 +17,7 @@ class ExtensionIntegrationTest extends TestCase
         // Write the test extension class name to config
     file_put_contents($configPath, "<?php\nreturn ['TestExtensionForIntegration'];\n");
         // Run provider
-        \Mynorel\Extensions\ExtensionServiceProvider::registerAndBootFromConfig();
+        ExtensionServiceProvider::registerAndBootFromConfig();
         $this->assertTrue(TestExtensionForIntegration::$booted);
         // Restore config
         file_put_contents($configPath, $original);
