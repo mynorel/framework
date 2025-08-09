@@ -31,6 +31,9 @@ class Console
     \Mynorel\Scriptorium\Scriptorium::singleton('memory', fn() => new \Mynorel\Services\MemoryService());
     \Mynorel\Scriptorium\Scriptorium::singleton('memorypalace', fn() => new \Mynorel\MemoryPalace\MemoryPalace());
     $this->registerDefaults();
+
+    // Register Herald (WebSocket layer)
+    \Mynorel\Scriptorium\Scriptorium::singleton('herald', fn() => new \Mynorel\Herald\Herald());
     }
 
     /**
@@ -63,6 +66,7 @@ class Console
     $this->register(new \Mynorel\Console\Commands\EpicCommand());
     $this->register(new \Mynorel\Console\Commands\ThemeSkinCommand());
     $this->register(new \Mynorel\Console\Commands\MemoryPalaceCommand());
+    $this->register(new \Mynorel\Console\Commands\HeraldCommand());
     }
 
     /**

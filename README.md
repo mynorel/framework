@@ -1,3 +1,21 @@
+13. **Real-time with Herald (WebSocket):**
+   ```php
+   use Mynorel\Facades\Herald;
+   // Start the WebSocket server
+   Herald::start(8080);
+   // Broadcast a message
+   Herald::broadcast('story', 'A new chapter begins!');
+   // Listen for messages
+   Herald::listen('story', function($msg) {
+	   echo "[Herald] $msg\n";
+   });
+   ```
+   Or via CLI:
+   ```bash
+   php myne herald start 8080
+   php myne herald broadcast story "A new chapter begins!"
+   php myne herald listen story
+   ```
 
 # Mynorel Framework
 
