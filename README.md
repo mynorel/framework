@@ -23,6 +23,7 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 ---
 
 ## 🚀 Features
+- **PageTurner (Pagination):** Narrative pagination for lists, models, and queries—each page is a chapter.
 
 - **Plotline ORM:** Narrative-driven, expressive, and supports MySQL, PostgreSQL, SQLite, SQL Server.
 - **Prelude Middleware:** Modular pipelines, global and per-sequence, with narrative metaphors.
@@ -61,6 +62,20 @@ project/
 ---
 
 ## ⚡ Quickstart
+11. **Paginate with PageTurner:**
+	```php
+	use Mynorel\PageTurner\PageTurner;
+	$items = range(1, 100);
+	$paginator = new PageTurner($items, 10, 1); // 10 per page, page 1
+	$current = $paginator->currentChapter();
+	$next = $paginator->nextChapter();
+	$total = $paginator->totalChapters();
+	```
+	Or via CLI:
+	```bash
+	php myne paginate 1,2,3,4,5,6,7,8,9,10,11,12 5 2
+	# Shows page 2 of the list, 5 items per page
+	```
 10. **Use the Scriptorium (Service Container):**
 	```php
 	use Mynorel\Scriptorium\Scriptorium;

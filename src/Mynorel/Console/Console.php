@@ -46,7 +46,8 @@ class Console
      */
     protected function registerDefaults(): void
     {
-    $this->register(new \Mynorel\Console\Commands\InstallCommand());
+        $this->register(new \Mynorel\Console\Commands\PageTurnerCommand());
+        $this->register(new \Mynorel\Console\Commands\InstallCommand());
     $this->register(new \Mynorel\Console\Commands\PhilosophyCommand());
     $this->register(new \Mynorel\Console\Commands\ChapterListCommand());
     $this->register(new \Mynorel\Console\Commands\PlotlineCommand());
