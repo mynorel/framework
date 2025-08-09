@@ -92,7 +92,15 @@ project/
 	ChronicleService::note('A new chapter begins.');
 	```
 
-7. **Run Tests (Narrative Style):**
+
+7. **Boot Extensions (Side Stories):**
+	```php
+	use Mynorel\Facades\Extension;
+	Extension::bootAll();
+	```
+	This loads all registered plugins (side stories) into your Mynorel app.
+
+8. **Run Tests (Narrative Style):**
 	```bash
 	php myne test
 	```
@@ -103,8 +111,8 @@ project/
 ## 🧩 Extending Mynorel
 - **Write and register plugins (side stories):**
 	- Implement `ExtensionInterface` in `/src/Mynorel/Extensions` or your own namespace.
-	- Register with `ExtensionManager::register(YourExtension::class);`
-	- Call `ExtensionManager::bootAll();` to initialize all plugins.
+	- Register with `Extension::register(YourExtension::class);`
+	- Call `Extension::bootAll();` to initialize all plugins (now integrated into Mynorel's core lifecycle).
 
 - **Create custom sentinels and rituals:**
 	- Implement `SentinelInterface` for guards (access control, workflow checks).

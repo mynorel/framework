@@ -55,6 +55,33 @@ Or even more poetic:
 ```
 
 ## Philosophical Layering
+-
+## Sample Sentinel (Guard)
+
+To create a custom guard (sentinel), implement `SentinelInterface`:
+
+```php
+namespace Mynorel\Author;
+
+use Mynorel\Author\Contracts\SentinelInterface;
+
+class EditorSentinel implements SentinelInterface
+{
+    public function check($context): bool
+    {
+        // Assume $context is a user object with an is() method
+        return is_object($context) && method_exists($context, 'is') && $context->is('editor');
+    }
+}
+```
+
+Use with Prelude's guard method:
+
+```php
+Prelude::guard(\Mynorel\Author\EditorSentinel::class, function($ctx) {
+    // ...protected logic...
+}, $user);
+```
 
 - Use roles as archetypes: `scribe`, `editor`, `reader`, `curator` (not just `admin`/`user`)
 - Policies are classes that implement `PolicyInterface` and define `enact($user, ...$args): bool`

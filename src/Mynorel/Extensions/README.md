@@ -7,9 +7,9 @@ Mynorel Extensions are "side stories"—modular plugins that expand your applica
 1. **Implement `ExtensionInterface`:**
    - Define a static `boot()` method for setup, hooks, or service registration.
 2. **Register Your Extension:**
-   - `ExtensionManager::register(YourExtension::class);`
+   - `Extension::register(YourExtension::class);`
 3. **Boot All Extensions:**
-   - `ExtensionManager::bootAll();`
+   - `Extension::bootAll();` (now integrated into Mynorel's core lifecycle)
 
 Extensions can add services, routes, directives, or even new narrative metaphors. They are first-class citizens in the Mynorel ecosystem.
 
