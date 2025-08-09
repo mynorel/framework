@@ -1,3 +1,6 @@
+# Extending Plotline with Plugins
+
+You can add new models, relationships, or query logic via Mynorel Extensions. Register your extension in `config/extensions.php` and see `/src/Mynorel/Extensions/README.md` for details.
 # Plotline ORM - Database Component
 
 The Plotline ORM is a comprehensive database orm layer that treats every model as a character, every relationship a subplot. Every query, a turning point.

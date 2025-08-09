@@ -1,4 +1,8 @@
 # Mynorel Service Layer
+-
+## Extending Services with Plugins
+
+Mynorel's Extension system allows you to add or override services via plugins (side stories). Register your extension in `config/extensions.php` and implement new services, routes, or logic as needed. See `/src/Mynorel/Extensions/README.md` for details.
 
 Services handles business logic, the real work horse behind, `Author::can()`,`Chronicle::note()`,`Theme::palette()`, etc. Modular Separation, keeps facades thin and expressive, while 
 services stay focused and composable. Injectable & Extendable, future-proof for dependency injection, mocking, or plugin overrides.

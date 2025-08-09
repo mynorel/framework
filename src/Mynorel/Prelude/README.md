@@ -1,3 +1,6 @@
+# Extending Prelude with Plugins
+
+Prelude pipelines and middleware can be extended or replaced via Mynorel Extensions. Register your extension in `config/extensions.php` and see `/src/Mynorel/Extensions/README.md` for details.
 ## Global Middleware (Global Preludes)
 
 You can register global Preludes that run for every request, flow, or directive:
