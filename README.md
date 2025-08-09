@@ -14,6 +14,7 @@ Mynorel lets you build your app as a story: every model is a character, every re
 - **Middleware is a prelude.**
 - **Handlers are rituals.**
 - **Guards are sentinels.**
+- **Plugins are side stories.**
 - **Queries are turning points.**
 - **Configuration is the script.**
 
@@ -30,6 +31,8 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 - **CLI & Console:** Powerful command system for developer tools, automation, and narrative test running.
 - **Configuration:** All config in `/config`, environment-driven, no magic.
 - **PSR-4 Autoloading:** Modern, Composer-based, no require_once.
+- **Extension System:** Register and load plugins ("side stories") at runtime via the ExtensionManager.
+- **Sentinels & Rituals:** Expressive guards and handlers with contracts for custom workflows.
 - **Ready for plugins, DI, and extension.**
 
 ---
@@ -45,6 +48,9 @@ project/
 │   │   ├── Prelude/      # Middleware, contracts
 │   │   ├── Services/     # Business logic, logging, auth, theming
 │   │   ├── Console/      # CLI commands
+│   │   ├── Extensions/   # Plugins (side stories), ExtensionManager
+│   │   ├── Sentinels/    # Guards (access control, workflows)
+│   │   ├── Rituals/      # Handlers (actions, rituals)
 │   │   ├── ...           # More features (Narrative, Myneral, etc.)
 │   └── ...
 ├── vendor/           # Composer dependencies
@@ -95,6 +101,15 @@ project/
 ---
 
 ## 🧩 Extending Mynorel
+- **Write and register plugins (side stories):**
+	- Implement `ExtensionInterface` in `/src/Mynorel/Extensions` or your own namespace.
+	- Register with `ExtensionManager::register(YourExtension::class);`
+	- Call `ExtensionManager::bootAll();` to initialize all plugins.
+
+- **Create custom sentinels and rituals:**
+	- Implement `SentinelInterface` for guards (access control, workflow checks).
+	- Implement `RitualInterface` for handlers (actions, rituals).
+	- Integrate with Prelude or your own flows.
 - **Built-in test runner:** Use `php myne test` for narrative test output. Add your own test cases in `tests/`.
 
 - **Add your own services, middleware, or models.**

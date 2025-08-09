@@ -1,14 +1,15 @@
 <?php
-namespace Mynorel\Prelude\Contracts;
+namespace Mynorel\Rituals;
+
 /**
- * RitualInterface: Contract for handler classes (actions after guards).
+ * RitualInterface: Contract for handlers (rituals) in Mynorel.
  */
 interface RitualInterface
 {
     /**
-     * Execute the ritual logic.
+     * Execute the ritual (handler logic).
      * @param mixed $context
      * @return mixed
      */
-    public function perform($context = null);
+    public function handle($context);
 }
