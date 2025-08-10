@@ -1,11 +1,5 @@
 # Mynorel Framework
 
-## Compatibility & Upgrades
-- PHP 8.4+ compatible (no deprecation warnings in core or CLI)
-- All CLI command signatures now use `array &$output` for strict interface compliance
-- `scssphp/scssphp` upgraded to v2 for Sass/SCSS support
-- `str_getcsv` usage updated for PHP 8.4
-
 <div align="center">
 	<img alt="CI" src="https://github.com/mynorel/framework/actions/workflows/ci.yml/badge.svg" />
 	<img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" />
@@ -58,6 +52,14 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 - **Scriptorium (Service Container):** Narrative dependency injection and service management for all story elements.
 - **Ready for plugins, DI, and extension.**
 - **Stylist:** Universal CSS compiler, theming, and asset pipeline
+
+---
+
+## Compatibility & Upgrades
+- PHP 8.4+ compatible (no deprecation warnings in core or CLI)
+- All CLI command signatures now use `array &$output` for strict interface compliance
+- `scssphp/scssphp` upgraded to v2 for Sass/SCSS support
+- `str_getcsv` usage updated for PHP 8.4
 
 ---
 
