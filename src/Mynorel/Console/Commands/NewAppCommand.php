@@ -18,6 +18,17 @@ class NewAppCommand implements CommandInterface
     public function execute(array $input, array &$output): int
     {
         $targetDir = $input[0] ?? null;
+        // Robustly expand ~ to home directory and trim whitespace
+        if ($targetDir) {
+            $targetDir = trim($targetDir);
+            if (strpos($targetDir, '~/') === 0) {
+                $targetDir = getenv('HOME') . substr($targetDir, 1);
+            } elseif ($targetDir === '~') {
+                $targetDir = getenv('HOME');
+            }
+        }
+        // Debug: show resolved targetDir
+        $output[] = "[debug] Resolved targetDir: $targetDir\n";
         if (!$targetDir) {
             $output[] = "\nPlease specify a directory for your new Mynorel app.\nUsage: myne new <directory>\n";
             return 1;
@@ -25,6 +36,30 @@ class NewAppCommand implements CommandInterface
         if (file_exists($targetDir)) {
             $output[] = "\nDirectory '$targetDir' already exists. Aborting.\n";
             return 1;
+        }
+        // Ensure all necessary directories exist before writing files
+        $dirs = [
+            $targetDir,
+            "$targetDir/config",
+            "$targetDir/resources",
+            "$targetDir/resources/lang/en",
+            "$targetDir/resources/themes/default",
+            "$targetDir/resources/views",
+            "$targetDir/public",
+            "$targetDir/database",
+            "$targetDir/src",
+            "$targetDir/src/Facades",
+            "$targetDir/src/Providers",
+            "$targetDir/src/Narrators",
+            "$targetDir/src/Extensions",
+            "$targetDir/docs",
+            "$targetDir/scripts",
+            "$targetDir/tests",
+        ];
+        foreach ($dirs as $dir) {
+            if (!is_dir($dir)) {
+                mkdir($dir, 0777, true);
+            }
         }
         // .gitignore
     file_put_contents("$targetDir/.gitignore", "/vendor/\n/node_modules/\n.env\n.env.*\n.DS_Store\n*.log\ncomposer.lock\ndatabase/*.sqlite\n/public/storage\n.idea/\n.vscode/\ncoverage/\n");
