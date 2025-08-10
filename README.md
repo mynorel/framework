@@ -1,7 +1,11 @@
 
+
 # Mynorel Framework
 
-![CI](https://github.com/mynorel/framework/actions/workflows/ci.yml/badge.svg)
+<div align="center">
+	<img alt="CI" src="https://github.com/mynorel/framework/actions/workflows/ci.yml/badge.svg" />
+	<img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" />
+</div>
 
 > **A narrative-first PHP framework for expressive, modular, and modern applications.**
 
@@ -287,8 +291,11 @@ php myne herald listen story
 	$console->register(new \Your\Extension\Commands\CustomCommand());
 	```
 
+
 ## 📝 License
 
 Mynorel is MIT licensed. Crafted with narrative and care.
 
 ---
+
+**Author:** Jade Monathrae Lewis (<jadelewis@mynorel.dev>)
