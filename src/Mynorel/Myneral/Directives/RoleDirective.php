@@ -9,11 +9,14 @@ class RoleDirective extends BaseDirective
 {
     public function compile($args, array $context = []): string
     {
-        $role = $args[0] ?? '';
-        $user = $context['user'] ?? null;
-        $output = "<?php if (method_exists([1m$user[0m, 'is') && [1m$user[0m->is('$role')): ?>";
-        $output .= $this->content;
-        $output .= "<?php endif; ?>";
-        return $output;
-    }
+        $role = isset($args[0]) ? $args[0] : '';
+        $user = isset($context['user']) ? $context['user'] : null;
+        $content = $this->content !== null ? $this->content : '';
+            if ($user && method_exists($user, 'is')) {
+                return "<?php if (method_exists(\$user, 'is') && \$user->is('$role')): ?>$content<?php endif; ?>";
+            } else {
+                return '';
+            }
+}
+
 }

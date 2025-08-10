@@ -11,11 +11,9 @@ class CanDirective extends BaseDirective
 {
     public function compile($args, array $context = []): string
     {
-        $ability = $args[0] ?? '';
-        $user = $context['user'] ?? null;
-        $output = "<?php if (\\Mynorel\\Author\\Author::can('$ability')->as([1m$user[0m)): ?>";
-        $output .= $this->content;
-        $output .= "<?php endif; ?>";
-        return $output;
+    $ability = isset($args[0]) ? $args[0] : '';
+    $content = $this->content !== null ? $this->content : '';
+    // Assume $user is available in the template scope
+    return "<?php if (isset(\$user) && \\Mynorel\\Author\\Author::can('$ability')->as(\$user)): ?>$content<?php endif; ?>";
     }
 }

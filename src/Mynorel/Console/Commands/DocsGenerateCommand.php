@@ -91,7 +91,7 @@ class DocsGenerateCommand implements CommandInterface
                                 $ret = $method->hasReturnType() ? ': ' . $method->getReturnType() : '';
                                 $sig = $method->isStatic() ? 'static ' : '';
                                 $sig .= $method->getName() . '(' . implode(', ', $params) . ')' . $ret;
-                                $doc .= "- ```php\n$sig\n```\n";
+                                $doc .= "```php\n$sig\n```\n";
                                 if ($method->getDocComment()) {
                                     $doc .= trim(preg_replace('/^\s*\* ?/m', '', str_replace(['/**', '*/'], '', $method->getDocComment()))) . "\n";
                                 }

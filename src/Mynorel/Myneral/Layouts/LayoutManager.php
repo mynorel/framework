@@ -1,5 +1,6 @@
 <?php
 namespace Mynorel\Myneral\Layouts;
+use Mynorel\Myneral\Layouts\TestLayout;
 
 class LayoutManager
 {
@@ -13,5 +14,10 @@ class LayoutManager
     public static function get(string $name): ?Layout
     {
         return self::$layouts[$name] ?? null;
+    }
+
+    public static function registerTestLayouts(): void
+    {
+        self::register('main', new TestLayout());
     }
 }

@@ -5,6 +5,7 @@ class LayoutDirective extends BaseDirective
 {
     public function compile($args, array $context = []): string
     {
-        return "<?php // Layout: {$args} ?>";
+        // For now, just return the block content (pass-through)
+        return $this->content ?? '';
     }
 }

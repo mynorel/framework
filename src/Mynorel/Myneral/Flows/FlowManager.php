@@ -43,4 +43,9 @@ class FlowManager
         }
         return $missing;
     }
+
+    public static function registerTestFlows(): void
+    {
+        self::register('onboarding', new TestFlow());
+    }
 }

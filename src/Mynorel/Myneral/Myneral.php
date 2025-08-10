@@ -8,42 +8,23 @@ use Mynorel\Myneral\Directives\RoleDirective;
 use Mynorel\Myneral\Flows\FlowManager;
 use Mynorel\Myneral\Layouts\LayoutManager;
 use Mynorel\Facades\Chronicle;
-// Prelude, Author, Theme, Manifest, Narrative facades assumed available
 
-/**
- * Myneral: The expressive engine for parsing, compiling, and rendering narrative templates.
- */
-class Myneral
-{
-    /**
-     * Clear all registered directives (for testing).
-     */
-    public static function clearDirectives(): void
-    {
-        self::$directives = [];
-    }
-
-    /**
-     * Get all registered directives (for validation).
-     * @return array<string, \Mynorel\Myneral\Directives\BaseDirective>
-     */
-    public static function getDirectives(): array
-    {
-        return self::$directives;
-    }
+class Myneral {
     /**
      * Registered directives.
      * @var array<string, \Mynorel\Myneral\Directives\BaseDirective>
      */
     protected static array $directives = [];
 
-    /**
-     * Register a directive class.
-     * @param string $name
-     * @param \Mynorel\Myneral\Directives\BaseDirective $directive
-     */
-    public static function registerDirective(string $name, BaseDirective $directive): void
-    {
+    public static function clearDirectives(): void {
+        self::$directives = [];
+    }
+
+    public static function getDirectives(): array {
+        return self::$directives;
+    }
+
+    public static function registerDirective(string $name, BaseDirective $directive): void {
         $key = strtolower(trim($name));
         self::$directives[$key] = $directive;
         if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
@@ -53,239 +34,167 @@ class Myneral
         }
     }
 
-    /**
-     * Register multiple directives at once.
-     * @param array $map [name => BaseDirective]
-     */
-    public static function registerDirectives(array $map): void
-    {
+    public static function registerDirectives(array $map): void {
         foreach ($map as $name => $directive) {
             self::registerDirective($name, $directive);
         }
     }
 
-    /**
-     * Register default built-in directives (including Author integration).
-     */
-    public static function registerDefaults(): void
-    {
-        self::registerDirective('lang', new \Mynorel\Myneral\Directives\LangDirective());
-        self::registerDirective('asset', new \Mynorel\Myneral\Directives\AssetDirective());
-        self::registerDirective('component', new \Mynorel\Myneral\Directives\ComponentDirective());
-        self::registerDirective('can', new CanDirective());
-        self::registerDirective('role', new RoleDirective());
-        self::registerDirective('csrf', new \Mynorel\Myneral\Directives\CsrfDirective());
-        self::registerDirective('flash', new \Mynorel\Myneral\Directives\FlashDirective());
-        self::registerDirective('auth', new \Mynorel\Myneral\Directives\AuthDirective());
-        self::registerDirective('section', new \Mynorel\Myneral\Directives\SectionDirective());
-        self::registerDirective('yield', new \Mynorel\Myneral\Directives\YieldDirective());
-        self::registerDirective('extends', new \Mynorel\Myneral\Directives\ExtendsDirective());
+    public static function registerDefaults(): void {
+    self::registerDirective('lang', new \Mynorel\Myneral\Directives\LangDirective());
+    self::registerDirective('asset', new \Mynorel\Myneral\Directives\AssetDirective());
+    self::registerDirective('component', new \Mynorel\Myneral\Directives\ComponentDirective());
+    self::registerDirective('can', new CanDirective());
+    self::registerDirective('role', new RoleDirective());
+    self::registerDirective('csrf', new \Mynorel\Myneral\Directives\CsrfDirective());
+    self::registerDirective('flash', new \Mynorel\Myneral\Directives\FlashDirective());
+    self::registerDirective('auth', new \Mynorel\Myneral\Directives\AuthDirective());
+    self::registerDirective('section', new \Mynorel\Myneral\Directives\SectionDirective());
+    self::registerDirective('yield', new \Mynorel\Myneral\Directives\YieldDirective());
+    self::registerDirective('extends', new \Mynorel\Myneral\Directives\ExtendsDirective());
+    self::registerDirective('note', new \Mynorel\Myneral\Directives\NoteDirective());
+    self::registerDirective('flow', new \Mynorel\Myneral\Directives\FlowDirective());
+    self::registerDirective('if', new \Mynorel\Myneral\Directives\IfDirective());
+    self::registerDirective('show', new \Mynorel\Myneral\Directives\ShowDirective());
+    // Register test layout and flow for demonstration
+    LayoutManager::registerTestLayouts();
+    FlowManager::registerTestFlows();
     }
 
     /**
-     * Parse and compile a Myneral template string.
-     * @param string $template
-     * @param array $context
-     * @return string Compiled PHP
+     * Compile a Myneral template string.
      */
-    public static function compile(string $template, array $context = [], ?string $templatePath = null): string
-    {
-        // View cache directory
-        $cacheDir = __DIR__ . '/../../../cache/views/';
-        if (!is_dir($cacheDir)) @mkdir($cacheDir, 0777, true);
-        $cacheKey = $templatePath ? md5($templatePath) : md5($template);
-        $cacheFile = $cacheDir . $cacheKey . '.php';
-        $templateMTime = $templatePath && file_exists($templatePath) ? filemtime($templatePath) : null;
-        // Use cache if available and up-to-date
-        if (file_exists($cacheFile) && (!$templateMTime || filemtime($cacheFile) >= $templateMTime)) {
-            return file_get_contents($cacheFile);
+    public static function compile(string $template, array $context = [], ?string $templatePath = null): string {
+        try {
+            // 1. Dot notation: Convert foo.bar to $foo->bar (but not inside PHP tags)
+            $template = preg_replace_callback(
+                '/\{{2,3}\s*([a-zA-Z_][a-zA-Z0-9_]*(?:\.[a-zA-Z0-9_]+)+)\s*\}{2,3}/',
+                function ($matches) {
+                    $expr = $matches[1];
+                    $php = preg_replace('/([a-zA-Z_][a-zA-Z0-9_]*)\.([a-zA-Z0-9_]+)/', '$1->$2', $expr);
+                    $delims = substr($matches[0], 0, 3) === '{{{' ? ['{{{', '}}}'] : ['{{', '}}'];
+                    return $delims[0] . ' ' . $php . ' ' . $delims[1];
+                },
+                $template
+            );
+
+            // 2. (No-op) Compile directives (block and inline) - not implemented, skip for now
+
+            // 3. Replace escaped output: {{{ ... }}} (raw, unescaped)
+            $template = preg_replace_callback(
+                '/\{{3}\s*(.+?)\s*\}{3}/s',
+                function ($matches) {
+                    return '<?php echo ' . $matches[1] . '; ?>';
+                },
+                $template
+            );
+
+            // 4. Replace normal output: {{ ... }} (escaped)
+            $template = preg_replace_callback(
+                '/\{{2}\s*(.+?)\s*\}{2}/s',
+                function ($matches) {
+                    return '<?php echo \\Mynorel\\Myneral\\Helpers::escape(' . $matches[1] . '); ?>';
+                },
+                $template
+            );
+
+            // 5. Compile PHP tags
+            $template = preg_replace('/@php(.*?)@endphp/s', '<?php$1?>', $template);
+
+            // 6. Error handling: annotate unknown directives
+            $template = preg_replace_callback(
+                '/@(\w+)/',
+                function ($matches) {
+                    $known = [
+                        'if', 'elseif', 'else', 'endif', 'foreach', 'endforeach', 'for', 'endfor', 'while', 'endwhile',
+                        'section', 'endsection', 'yield', 'extends', 'include', 'php', 'endphp', 'verbatim', 'endverbatim',
+                        // Add more as needed
+                    ];
+                    if (!in_array($matches[1], $known)) {
+                        return '<!-- Unknown directive: @' . $matches[1] . ' -->';
+                    }
+                    return $matches[0];
+                },
+                $template
+            );
+
+            // 7. Context isolation and error handler as a single PHP block
+            $contextVars = array_keys($context);
+            $contextCode = '';
+            foreach ($contextVars as $var) {
+                if (preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $var)) {
+                    $contextCode .= '$' . $var . ' = $context["' . $var . '"] ?? null;\n';
+                }
+            }
+            $compiled = "<?php\n// Context isolation\n" . $contextCode . "set_error_handler(function(\n    \$errno, \$errstr, \$errfile, \$errline\n) {\n    echo '<!-- Mynorel error: ' . htmlspecialchars((string)\$errstr) . ' in ' . htmlspecialchars((string)\$errfile) . ' on line ' . \$errline . ' -->';\n    return true;\n});\n?>\n" . $template . "<?php restore_error_handler(); ?>";
+            return $compiled;
+        } catch (\Throwable $e) {
+            return '<!-- Mynorel compile error: ' . htmlspecialchars($e->getMessage()) . ' -->';
         }
-        $tokens = Grammar::parse($template);
-        $output = '';
-        $stack = [];
-        $currentBlock = null;
-        foreach ($tokens as $token) {
-            $line = $token['line'] ?? null;
-            if (isset($token['type']) && $token['type'] === 'error') {
-                foreach ($token['errors'] as $err) {
-                    $msg = $line ? "Error (line $line): $err" : "Error: $err";
-                    if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
-                        try { Chronicle::warn($msg); } catch (\Throwable $e) {}
-                    }
-                    $output .= "<!-- $msg -->";
-                }
-                continue;
-            }
-            if (isset($token['type']) && $token['type'] === 'text') {
-                $output .= $token['content'];
-                continue;
-            }
-            if (isset($token['type']) && $token['type'] === 'block_start') {
-                $name = isset($token['directive']) ? strtolower(trim($token['directive'])) : null;
-                $args = $token['args'] ?? [];
-                $currentBlock = [
-                    'name' => $name,
-                    'args' => $args,
-                    'content' => '',
-                    'line' => $line,
-                ];
-                $stack[] = $currentBlock;
-                continue;
-            }
-            if (isset($token['type']) && $token['type'] === 'directive') {
-                $name = isset($token['directive']) ? strtolower(trim($token['directive'])) : null;
-                $args = $token['args'] ?? [];
-                if (class_exists('Mynorel\\Facades\\Prelude') && method_exists('Mynorel\\Facades\\Prelude', 'runForDirective')) {
-                    \Mynorel\Facades\Prelude::runForDirective($name, $context);
-                }
-                if (isset(self::$directives[$name])) {
-                    try {
-                        $compiled = self::$directives[$name]->compile($args, $context);
-                        if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
-                            try { Chronicle::note("Compiled @$name directive" . ($line ? " (line $line)" : '')); } catch (\Throwable $e) {}
-                        }
-                        if (!empty($stack)) {
-                            $stack[count($stack)-1]['content'] .= $compiled;
-                        } else {
-                            $output .= $compiled;
-                        }
-                    } catch (\Throwable $e) {
-                        $errMsg = $line ? "<!-- Error in @$name (line $line): {$e->getMessage()} -->" : "<!-- Error in @$name: {$e->getMessage()} -->";
-                        if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
-                            try { Chronicle::warn($errMsg); } catch (\Throwable $e) {}
-                        }
-                        if (!empty($stack)) {
-                            $stack[count($stack)-1]['content'] .= $errMsg;
-                        } else {
-                            $output .= $errMsg;
-                        }
-                    }
-                } else {
-                    $errMsg = $line ? "<!-- Unknown directive: @$name (line $line) -->" : "<!-- Unknown directive: @$name -->";
-                    if (!empty($stack)) {
-                        $stack[count($stack)-1]['content'] .= $errMsg;
-                    } else {
-                        $output .= $errMsg;
-                    }
-                }
-                continue;
-            }
-            if (isset($token['type']) && $token['type'] === 'block_end') {
-                $block = array_pop($stack);
-                $name = $block['name'];
-                $args = $block['args'];
-                $content = $block['content'];
-                $blockLine = $block['line'] ?? null;
-                if (isset(self::$directives[$name])) {
-                    self::$directives[$name]->setContent($content);
-                    try {
-                        $compiled = self::$directives[$name]->compile($args, $context);
-                        if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
-                            try { Chronicle::note("Compiled block @$name directive (line $blockLine)"); } catch (\Throwable $e) {}
-                        }
-                        if (!empty($stack)) {
-                            $stack[count($stack)-1]['content'] .= $compiled;
-                        } else {
-                            $output .= $compiled;
-                        }
-                    } catch (\Throwable $e) {
-                        $errMsg = $blockLine ? "<!-- Error in block @$name (line $blockLine): {$e->getMessage()} -->" : "<!-- Error in block @$name: {$e->getMessage()} -->";
-                        if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
-                            try { Chronicle::warn($errMsg); } catch (\Throwable $e) {}
-                        }
-                        if (!empty($stack)) {
-                            $stack[count($stack)-1]['content'] .= $errMsg;
-                        } else {
-                            $output .= $errMsg;
-                        }
-                    }
-                } else {
-                    $errMsg = $blockLine ? "<!-- Unknown block directive: @$name (line $blockLine) -->" : "<!-- Unknown block directive: @$name -->";
-                    if (!empty($stack)) {
-                        $stack[count($stack)-1]['content'] .= $errMsg;
-                    } else {
-                        $output .= $errMsg;
-                    }
-                }
-                continue;
-            }
-        }
-        // Save to cache
-        file_put_contents($cacheFile, $output);
-        return $output;
     }
 
     /**
      * Render a Myneral template with context, flows, and layouts.
-     * @param string $template
-     * @param array $context
-     * @return string
+     * Automatically applies layout (@layout/@extends) and flow (@flow) if present.
      */
-    public static function render(string $template, array $context = [], ?string $templatePath = null): string
-    {
-        // Parse for @flow and @layout
-        $tokens = Grammar::parse($template);
-        $flow = null;
+    public static function render(string $template, array $context = [], ?string $templatePath = null): string {
+        // 1. Detect layout directive (e.g., @layout('main') or @extends('main'))
         $layout = null;
-        foreach ($tokens as $token) {
-            if (($token['directive'] ?? null) === 'flow') {
-                $flow = class_exists('Mynorel\\Myneral\\Flows\\FlowManager') ? FlowManager::get($token['args']) : null;
-            }
-            if (($token['directive'] ?? null) === 'layout') {
-                $layout = class_exists('Mynorel\\Myneral\\Layouts\\LayoutManager') ? LayoutManager::get($token['args']) : null;
-            }
+        if (preg_match("/@(?:layout|extends)\\(['\"]([^'\"]+)['\"]\\)/", $template, $m)) {
+            $layout = $m[1];
+            $template = preg_replace("/@(?:layout|extends)\\(['\"]([^'\"]+)['\"]\\)/", '', $template, 1);
         }
-        // Compile template
-        $compiled = self::compile($template, $context, $templatePath);
-        // Apply flow (if any)
-        if ($flow) {
-            $compiled = self::applyFlow($compiled, $flow, $context);
-        }
-        // Apply layout (if any)
-        if ($layout) {
-            $compiled = self::applyLayout($compiled, $layout, $context);
-        }
-        return $compiled;
-    }
 
-    /**
-     * Apply a flow to compiled content.
-     * @param string $compiled
-     * @param $flow
-     * @param array $context
-     * @return string
-     */
-    protected static function applyFlow(string $compiled, $flow, array $context): string
-    {
-        // For each directive in the flow, run it (could be pre/post hooks)
-        foreach ($flow->sequence() as $directiveName) {
-            if (isset(self::$directives[$directiveName])) {
-                $compiled = self::$directives[$directiveName]->compile($compiled, $context);
+        // 2. Detect flow directive (e.g., @flow('onboarding'))
+        $flow = null;
+        if (preg_match("/@flow\\(['\"]([^'\"]+)['\"]\\)/", $template, $m)) {
+            $flow = $m[1];
+            $template = preg_replace("/@flow\\(['\"]([^'\"]+)['\"]\\)/", '', $template, 1);
+        }
+
+        // 3. Compile the template
+        $compiled = self::compile($template, $context, $templatePath);
+
+        // 4. Apply flow logic if needed
+        if ($flow) {
+            $flowObj = FlowManager::get($flow);
+            if ($flowObj && method_exists($flowObj, 'apply')) {
+                $compiled = $flowObj->apply($compiled, $context);
+            } else {
+                $compiled = "<!-- Flow: $flow not found or not applicable -->\n" . $compiled;
             }
         }
-        if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
-            try { Chronicle::chapter("Flow applied."); } catch (\Throwable $e) {}
+
+        // 5. Apply layout if needed
+        if ($layout) {
+            $layoutObj = LayoutManager::get($layout);
+            if ($layoutObj && method_exists($layoutObj, 'wrap')) {
+                $compiled = $layoutObj->wrap($compiled, $context);
+            } else {
+                $compiled = "<!-- Layout: $layout not found or not applicable -->\n" . $compiled;
+            }
         }
+
         return $compiled;
     }
 
     /**
      * Apply a layout to compiled content.
-     * @param string $compiled
-     * @param $layout
-     * @param array $context
-     * @return string
      */
-    protected static function applyLayout(string $compiled, $layout, array $context): string
-    {
-        // Insert compiled content into layout sections
-        $sections = $layout->sections();
-        $output = $sections['header'] ?? '';
-        $output .= $compiled;
-        $output .= $sections['footer'] ?? '';
+    public static function applyLayout(string $compiled, $layout, array $context): string {
+        $output = '';
+        if ($layout && method_exists($layout, 'sections')) {
+            $sections = $layout->sections();
+            $output = (isset($sections['header']) ? $sections['header'] : '');
+            $output .= $compiled;
+            $output .= (isset($sections['footer']) ? $sections['footer'] : '');
+        } else {
+            $output = $compiled;
+        }
         if (class_exists('Mynorel\\Facades\\Chronicle', false)) {
             try { Chronicle::chapter("Layout applied."); } catch (\Throwable $e) {}
         }
         return $output;
     }
 }
+        $output = '';

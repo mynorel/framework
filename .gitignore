@@ -1,6 +1,7 @@
 # Mynorel .gitignore
 
-# Composer dependencies
+/vendor/
+composer.lock
 /vendor/
 
 # OS & IDE

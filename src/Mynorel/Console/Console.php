@@ -50,8 +50,8 @@ class Console
      */
     protected function registerDefaults(): void
     {
-        $this->register(new \Mynorel\Console\Commands\PageTurnerCommand());
-        $this->register(new \Mynorel\Console\Commands\InstallCommand());
+    $this->register(new \Mynorel\Console\Commands\PageTurnerCommand());
+    $this->register(new \Mynorel\Console\Commands\InstallCommand());
     $this->register(new \Mynorel\Console\Commands\PhilosophyCommand());
     $this->register(new \Mynorel\Console\Commands\ChapterListCommand());
     $this->register(new \Mynorel\Console\Commands\PlotlineCommand());
@@ -68,6 +68,7 @@ class Console
     $this->register(new \Mynorel\Console\Commands\MemoryPalaceCommand());
     $this->register(new \Mynorel\Console\Commands\HeraldCommand());
     $this->register(new \Mynorel\Console\Commands\DocsGenerateCommand());
+    $this->register(new \Mynorel\Console\Commands\ViewRenderCommand());
     }
 
     /**
