@@ -2,7 +2,6 @@
 
 # Composer dependencies
 /vendor/
-composer.lock
 
 # OS & IDE
 .DS_Store
