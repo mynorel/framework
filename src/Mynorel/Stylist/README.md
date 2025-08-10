@@ -1,15 +1,15 @@
 # Mynorel Stylist: Universal CSS Compiler
 
-Stylist is Mynorel’s narrative-driven CSS compiler and asset pipeline. It empowers developers, theme authors, and plugin creators to use any modern CSS workflow—Tailwind, Sass, Less, PostCSS, and more—directly within their Mynorel apps, with zero config and full CLI integration.
+Stylist is Mynorel’s narrative-driven CSS compiler and asset pipeline. It empowers developers, theme authors, and plugin creators to use any modern CSS workflow—Tailwind, Sass, PostCSS, and more—directly within their Mynorel apps, with zero config and full CLI integration.
 
 ## Philosophy
 - **Narrative Theming:** Styles are part of your story. Stylist lets you write, compile, and swap themes using your favorite CSS tools.
-- **Universal Support:** Use Tailwind for utility-first, Sass/Less for variables and nesting, or plain CSS/PostCSS for custom pipelines.
+- **Universal Support:** Use Tailwind for utility-first, Sass for variables and nesting, or plain CSS/PostCSS for custom pipelines.
 - **CLI-First:** Compile, watch, and optimize styles with expressive CLI commands (`php myne stylist:compile`, `php myne stylist:watch`).
 - **Extensible:** Plugins and themes can declare their own styles, which are auto-compiled and namespaced.
 
 ## Features
-- Compile Tailwind, Sass, Less, and PostCSS out of the box
+- Compile Tailwind, Sass, and PostCSS out of the box
 - Watch mode for live development
 - Minification and autoprefixing for production
 - Theming support: compile multiple themes and switch at runtime
@@ -22,7 +22,6 @@ Stylist is Mynorel’s narrative-driven CSS compiler and asset pipeline. It empo
 ```bash
 php myne stylist:compile --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
 php myne stylist:compile --type=sass --input=resources/themes/noir/style.scss --output=public/css/noir.css
-php myne stylist:compile --type=less --input=resources/themes/noir/style.less --output=public/css/noir.css
 ```
 
 ### Watch for Changes
@@ -47,7 +46,6 @@ php myne stylist:watch --type=tailwind --input=resources/themes/noir/tailwind.cs
 ## Requirements & Compatibility
 - PHP 8.4+ compatible (no deprecation warnings)
 - Uses `scssphp/scssphp` v2 for Sass/SCSS (fully updated)
-- Less support via `oyejorge/less.php` (note: this package is abandoned, consider alternatives for future-proofing)
 - Tailwind CLI (bundled or installed via npm)
 
 ## Example CLI Commands

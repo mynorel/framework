@@ -3,7 +3,7 @@ namespace Mynorel\Stylist;
 
 /**
  * StylistService: Universal CSS compiler for Mynorel.
- * Supports Tailwind, Sass, Less, PostCSS, and plain CSS.
+ * Supports Tailwind, Sass, PostCSS, and plain CSS.
  */
 class StylistService
 {
@@ -12,8 +12,6 @@ class StylistService
         switch (strtolower($type)) {
             case 'sass':
                 return self::compileSass($input, $output, $options);
-            case 'less':
-                return self::compileLess($input, $output, $options);
             case 'postcss':
                 return self::compilePostCss($input, $output, $options);
             case 'tailwind':
@@ -30,16 +28,6 @@ class StylistService
         }
         $scss = new \ScssPhp\ScssPhp\Compiler();
         $css = $scss->compileString(file_get_contents($input))->getCss();
-        file_put_contents($output, $css);
-        return true;
-    }
-    public static function compileLess($input, $output, $options = []) {
-        if (!class_exists('Less_Parser')) {
-            throw new \RuntimeException('oyejorge/less.php not installed.');
-        }
-        $parser = new \Less_Parser();
-        $parser->parseFile($input);
-        $css = $parser->getCss();
         file_put_contents($output, $css);
         return true;
     }
