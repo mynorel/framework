@@ -12,7 +12,9 @@
   ],
   "require": {
     "php": ">=8.1",
-    "workerman/workerman": "^5.1"
+    "workerman/workerman": "^5.1",
+    "scssphp/scssphp": "^1.11",
+    "oyejorge/less.php": "^1.7"
   },
   "autoload": {
     "psr-4": {

@@ -1,15 +1,31 @@
 # Mynorel Theming
 
-Mynorel supports narrative-driven theming for your application.
+Mynorel supports narrative theming for both CLI and web output, allowing you to reskin your app’s story and UI.
 
-## Theme Manifests
-- Define themes in `src/Mynorel/Myneral/Manifest/ThemeManifest.php`.
-- Each theme can provide assets, layouts, and narrative styles.
+## ThemeSkins
+- Pluggable formatters for CLI/web output
+- Register new skins in PHP:
 
-## Usage
-- Switch themes via configuration or runtime.
-- Use `@asset` and `@extends` to leverage theme resources.
+```php
+use Mynorel\ThemeSkins\ThemeSkins;
+ThemeSkins::register('noir', fn($text) => "\033[1;30m$text\033[0m");
+ThemeSkins::activate('noir');
+echo ThemeSkins::format('A dark and stormy night...');
+```
 
-## Extending Themes
-- Create new theme classes or manifests.
-- Register with the ThemeService for dynamic switching.
+- Switch or preview skins via CLI:
+```bash
+php myne skin noir
+php myne skin list
+php myne skin preview "A dark and stormy night..."
+```
+
+## Web Theming
+- Use `resources/themes/` for CSS, layouts, and assets
+- Register and activate themes in your app logic
+
+## Extending
+- Create new skins for CLI or web
+- Integrate with Myneral templates for dynamic theming
+
+See ThemeSkins and Myneral docs for more.

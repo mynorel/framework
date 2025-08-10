@@ -53,7 +53,8 @@ This directory contains important documentation for the Mynorel framework.
 - [Billing Feature](../src/Mynorel/Billing/README.md) — Subscription/payment management
 - [Cloud Feature](../src/Mynorel/Cloud/README.md) — Cloud provider integration, deployment
 - [Resource Feature](../src/Mynorel/Resource/README.md) — Resource CRUD UI, permissions
-- [Architecture](architecture.md) *(coming soon)*
-- [Directives](directives.md) *(coming soon)*
-- [Theming](theming.md) *(coming soon)*
-- [Testing](testing.md) *(coming soon)*
+- [Architecture](architecture.md) — Narrative-driven structure, layers, and flow
+- [Directives](directives.md) — Myneral template directives and custom logic
+- [Theming](theming.md) — Narrative theming for CLI and web
+- [Testing](testing.md) — Narrative-style testing and CLI integration
+- [Stylist Feature](../src/Mynorel/Stylist/README.md) — Universal CSS compiler, theming, and asset pipeline

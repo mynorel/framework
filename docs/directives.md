@@ -1,27 +1,47 @@
 # Mynorel Directives
 
-Mynorel's Myneral template engine supports expressive narrative directives for views and components.
+Directives are special instructions in Myneral templates that control logic, flow, and rendering. They are inspired by Blade, but tailored for narrative-driven apps.
 
 ## Built-in Directives
 
-- `@csrf` &mdash; Output a CSRF field for forms.
-- `@flash('key')` &mdash; Output a flash message by key.
-- `@auth` &mdash; Check if the user is authenticated.
-- `@role('role') ... @endrole` &mdash; Block for users with a given role.
-- `@can('ability') ... @endcan` &mdash; Block for users with a given ability.
-- `@section('name') ... @endsection` &mdash; Define a section.
-- `@yield('name')` &mdash; Output a section's content.
-- `@extends('layout')` &mdash; Inherit from a layout.
-- `@component('name', params)` &mdash; Render a component.
-- `@asset('file', 'type', 'version')` &mdash; Output an asset URL or tag.
-- `@lang('key')` &mdash; Output a localized string.
+- `@layout('main')` — Use a layout
+- `@section('header')` / `@endsection` — Define a section
+- `@yield('content')` — Output a section
+- `@flow('onboarding')` — Run a narrative flow
+- `@can('edit')` — Check authorization
+- `@role('admin')` — Role-based logic
+- `@if`, `@elseif`, `@else`, `@endif` — Conditionals
+- `@show('intro')` — Show a partial/section
 
 ## Custom Directives
 
-You can register your own directives via:
+You can register your own directives in PHP:
 
 ```php
-\Mynorel\Myneral\Myneral::registerDirective('mydirective', new MyDirective());
+use Mynorel\Myneral\Directives\DirectiveManager;
+DirectiveManager::register('shout', function($expression) {
+    return strtoupper($expression);
+});
 ```
 
-See the source in `src/Mynorel/Myneral/Directives/` for more.
+## Usage Example
+
+```myne
+@layout('main')
+@section('content')
+    @if(user.isNew)
+        Welcome, {{ user.name }}!
+        @show('intro-tour')
+    @endif
+    @can('edit-post')
+        <button>Edit Post</button>
+    @endcan
+@endsection
+```
+
+## Extending
+
+- Add new directives for your app’s needs
+- Use directives for access control, theming, or custom flows
+
+See Myneral and Facades docs for more.

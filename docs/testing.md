@@ -1,22 +1,37 @@
 # Mynorel Testing
 
-Mynorel uses PHPUnit for all core and narrative tests.
+Mynorel supports narrative-style testing for all features, using PHPUnit and custom CLI commands.
+
+## Test Types
+- **Unit Tests:** Test individual classes/services
+- **Feature Tests:** Test flows, CLI commands, and narrative logic
+- **Narrative Tests:** Test story-driven scenarios
 
 ## Running Tests
+- Use the built-in CLI:
+```bash
+php myne test
+```
+- Outputs results in narrative style
+- Add your tests in the `tests/` directory
 
-- Run all tests:
-  ```bash
-  php myne test
-  ```
-- Or run PHPUnit directly:
-  ```bash
-  ./vendor/bin/phpunit
-  ```
+## Example Test
+```php
+use PHPUnit\Framework\TestCase;
+use Mynorel\Plotline\Plots\Hero;
 
-## Writing Tests
-- Place tests in the `tests/` directory, following PSR-4.
-- Use expressive, narrative test names and comments.
-- Test all custom directives, flows, and services.
+class HeroTest extends TestCase {
+    public function testHeroCanSave() {
+        $hero = new Hero();
+        $hero->name = 'Alice';
+        $this->assertTrue($hero->save());
+    }
+}
+```
 
-## Example
-See `tests/Myneral/ViewTest.php` for template engine tests.
+## Extending
+- Add more tests for new features
+- Use Chronicle for narrative test output
+- Integrate with CI/CD for automated testing
+
+See the tests/ directory and CLI docs for more.

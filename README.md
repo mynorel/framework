@@ -1,5 +1,3 @@
-
-
 # Mynorel Framework
 
 <div align="center">
@@ -53,6 +51,7 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 - **Sentinels & Rituals:** Expressive guards and handlers with contracts for custom workflows.
 - **Scriptorium (Service Container):** Narrative dependency injection and service management for all story elements.
 - **Ready for plugins, DI, and extension.**
+- **Stylist:** Universal CSS compiler, theming, and asset pipeline
 
 ---
 
