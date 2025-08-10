@@ -13,8 +13,12 @@ class SnapshotTestCommand implements CommandInterface
     public function description(): string { return 'Run a snapshot test.'; }
     public function execute(array $input, array &$output): int
     {
-        // Example usage: php myne test:snapshot output.txt snapshot.snap
-        $output[] = "Snapshot test stub (integrate with your test suite).";
+        $file = $input[0] ?? 'output.txt';
+        $snapshot = $input[1] ?? 'snapshot.snap';
+        ob_start();
+        SnapshotTest::compare($file, $snapshot);
+        $result = ob_get_clean();
+        $output[] = $result;
         return 0;
     }
 }

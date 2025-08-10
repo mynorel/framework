@@ -34,6 +34,7 @@ class Console
 
     // Register Herald (WebSocket layer)
     \Mynorel\Scriptorium\Scriptorium::singleton('herald', fn() => new \Mynorel\Herald\Herald());
+        // Command classes handle registration for 'test:mutation' and 'academy'.
     }
 
     /**
@@ -80,9 +81,10 @@ class Console
     $this->register(new \Mynorel\Console\Commands\StoryMapCommand());
     $this->register(new \Mynorel\Console\Commands\HeraldDashboardCommand());
     $this->register(new \Mynorel\Console\Commands\SnapshotTestCommand());
-    $this->register(new \Mynorel\Console\Commands\MutationTestCommand());
+    // New CLI commands for advanced features
+    $this->register(new \Mynorel\Console\Commands\MutationTestCommand()); // test:mutation
     $this->register(new \Mynorel\Console\Commands\HotReloadCommand());
-    $this->register(new \Mynorel\Console\Commands\AcademyCommand());
+    $this->register(new \Mynorel\Console\Commands\AcademyCommand()); // academy
     // New feature commands
     $this->register(new \Mynorel\Console\Commands\ResourceListCommand());
     $this->register(new \Mynorel\Console\Commands\PluginListCommand());
@@ -100,6 +102,24 @@ class Console
      * @param array $input
      * @return int Exit code
      */
+    /**
+     * Run a command by name and return output and exit code.
+     * @param string $name
+     * @param array $input
+     * @return array [exitCode, output]
+     */
+    public function runWithOutput(string $name, array $input = []): array
+    {
+        $output = [];
+        if (isset($this->commands[$name])) {
+            $exitCode = $this->commands[$name]->execute($input, $output);
+            return [$exitCode, $output];
+        }
+        $output[] = "[error] Command '$name' not found.\n";
+        return [1, $output];
+    }
+
+    // Legacy run for compatibility
     public function run(string $name, array $input = []): int
     {
         $output = [];

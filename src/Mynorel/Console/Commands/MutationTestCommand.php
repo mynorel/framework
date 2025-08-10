@@ -13,7 +13,8 @@ class MutationTestCommand implements CommandInterface
     public function description(): string { return 'Run mutation tests.'; }
     public function execute(array $input, array &$output): int
     {
-        $output[] = "Mutation test stub (integrate with your test suite).";
+        $result = MutationTest::runMutations('all');
+        $output[] = $result;
         return 0;
     }
 }

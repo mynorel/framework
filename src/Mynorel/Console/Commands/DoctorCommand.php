@@ -13,8 +13,10 @@ class DoctorCommand implements CommandInterface
     public function description(): string { return 'Diagnose and fix common Mynorel issues.'; }
     public function execute(array $input, array &$output): int
     {
+        ob_start();
         DoctorCLI::run();
-        $output[] = "Doctor check complete.";
+        $result = ob_get_clean();
+        $output[] = $result;
         return 0;
     }
 }

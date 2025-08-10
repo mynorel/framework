@@ -31,16 +31,48 @@ class Herald
      * Start the Herald WebSocket server.
      * @param int $port
      */
-    public function start(int $port = 8080): void
+    /**
+     * Start the Herald WebSocket server.
+     * @param int $port
+     * @param bool $secure
+     * @param null|callable $auth
+     */
+    public function start(int $port = 8080, bool $secure = false, ?callable $auth = null): void
     {
-        $this->worker = new Worker("websocket://0.0.0.0:$port");
-        $this->worker->onConnect = function(TcpConnection $connection) {
+        $protocol = $secure ? 'websocket+ssl' : 'websocket';
+        $this->worker = new Worker("$protocol://0.0.0.0:$port");
+        $rateLimits = [];
+        $this->worker->onConnect = function(TcpConnection $connection) use (&$rateLimits, $auth) {
             $this->clients[$connection->id] = $connection;
+            // Extract token from query string or payload (if available)
+            $token = null;
+            $query = parse_url($connection->getRemoteAddress(), PHP_URL_QUERY);
+            if ($query) {
+                parse_str($query, $params);
+                $token = $params['token'] ?? null;
+            }
+            // Optionally, token could be sent in the first message payload as well
+            if ($auth) {
+                if (!$auth($token, $connection)) {
+                    $connection->send(json_encode(['error' => 'Authentication failed']));
+                    $connection->close();
+                }
+            }
         };
-        $this->worker->onMessage = function(TcpConnection $connection, $data) {
+        $this->worker->onMessage = function(TcpConnection $connection, $data) use (&$rateLimits) {
             $payload = json_decode($data, true);
             $channel = $payload['channel'] ?? 'default';
             $message = $payload['message'] ?? $data;
+            // Rate limiting: max 10 messages per 5 seconds per connection
+            $now = time();
+            $id = $connection->id;
+            if (!isset($rateLimits[$id])) $rateLimits[$id] = [];
+            $rateLimits[$id] = array_filter($rateLimits[$id], fn($t) => $t > $now - 5);
+            if (count($rateLimits[$id]) >= 10) {
+                $connection->send(json_encode(['error' => 'Rate limit exceeded']));
+                return;
+            }
+            $rateLimits[$id][] = $now;
             // Sentinel check (auth/permission)
             if (isset($this->sentinels[$channel])) {
                 $allowed = ($this->sentinels[$channel])($connection, $payload);
@@ -67,7 +99,7 @@ class Herald
                 unset($clients[$connection->id]);
             }
         };
-        echo "[Herald] WebSocket server started on port $port\n";
+        echo "[Herald] WebSocket server started on port $port" . ($secure ? ' (secure wss)' : '') . "\n";
         Worker::runAll();
     }
 

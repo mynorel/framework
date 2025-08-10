@@ -13,7 +13,11 @@ class HotReloadCommand implements CommandInterface
     public function description(): string { return 'Start hot-reloading for Myneral templates.'; }
     public function execute(array $input, array &$output): int
     {
-        $output[] = "Hot reload stub (integrate with your dev workflow).";
+        $path = $input[0] ?? 'src/Mynorel/Myneral/Layouts';
+        ob_start();
+        HotReloadService::watch($path);
+        $result = ob_get_clean();
+        $output[] = $result;
         return 0;
     }
 }

@@ -20,20 +20,27 @@ It's onboarding through invocation—each facade becomes a character in the stor
 
 Mynorel’s directive philosophy thrives on clarity and elegance. Facades let you expose core services in a way that feels declarative and readable, without leaking internal complexity.
 
+
 ## Facade Roles
 
-| Facade    | Role in the Narrative         | Example Usage                  |
-|-----------|------------------------------|-------------------------------|
-| System    | Core runtime and environment | System::uptime()              |
-| Theme     | Visual and structural theming| Theme::palette()              |
-| Narrative | Onboarding and storytelling  | Narrative::chapter('intro')   |
-| Directive | Syntax and templating engine | Directive::compile('x-if')    |
-| Memory    | State and persistence        | Memory::remember('user')      |
-| Author    | Permissions and roles        | Author::can('edit-post', $u)  |
-| Chronicle | Narrative logging            | Chronicle::note('event')      |
-| Prelude   | Middleware/prelude           | Prelude::run('Authenticate')  |
-| Manifest  | Introspection                | Manifest::modules()           |
-| Extension | Plugins (side stories)       | Extension::register(MyPlugin::class); Extension::bootAll(); |
+| Facade      | Role in the Narrative                | Example Usage                                      |
+|-------------|-------------------------------------|----------------------------------------------------|
+| System      | Core runtime and environment        | System::uptime()                                   |
+| Theme       | Visual and structural theming       | Theme::palette()                                   |
+| Narrative   | Onboarding and storytelling         | Narrative::chapter('intro')                        |
+| Directive   | Syntax and templating engine        | Directive::compile('x-if')                         |
+| Memory      | State and persistence               | Memory::remember('user')                           |
+| Author      | Permissions and roles               | Author::can('edit-post', $u)                       |
+| Chronicle   | Narrative logging                   | Chronicle::note('event')                           |
+| Prelude     | Middleware/prelude                  | Prelude::run('Authenticate')                       |
+| Manifest    | Introspection                       | Manifest::modules()                                |
+| Extension   | Plugins (side stories)              | Extension::register(MyPlugin::class); Extension::bootAll(); |
+| Marketplace | Plugin discovery and installation   | Marketplace::list(); Marketplace::install('theme') |
+| StoryMap    | Narrative structure export/import   | StoryMap::export(); StoryMap::summary()            |
+| Academy     | Onboarding and tutorials            | Academy::startTutorial()                            |
+| Mutation    | Mutation testing                    | Mutation::run('all')                               |
+| Snapshot    | Snapshot testing                    | Snapshot::compare('out.txt', 'snap.snap')          |
+| HotReload   | Template hot reloading              | HotReload::watch('src/templates')                  |
 
 These aren’t just facades—they’re metaphors. They teach the developer how to think in Mynorel’s language.
 

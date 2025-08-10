@@ -18,9 +18,25 @@ If a client tries to join or send to a channel and the sentinel denies access, t
 }
 ```
 
+
 # Herald (WebSocket Layer)
 
 Herald is Mynorel’s narrative WebSocket layer, powered by Workerman. Broadcast, listen, and narrate real-time events and story fragments—bring your app to life with live updates, collaborative scenes, and more.
+
+## Dashboard CLI
+
+Launch the real-time dashboard:
+```
+php myne herald:dashboard
+```
+
+Simulate an event:
+```
+php myne herald:dashboard simulate <channel> <event>
+```
+
+---
+*"Every story needs a herald. Every app needs a voice."*
 
 ## Requirements
 
