@@ -44,8 +44,10 @@ php myne stylist:watch --type=tailwind --input=resources/themes/noir/tailwind.cs
 - Customize CLI commands for advanced workflows
 - Integrate with Myneral templates for dynamic style injection
 
-## Requirements
-- PHP wrappers for Sass/Less/PostCSS (or Node.js if available)
+## Requirements & Compatibility
+- PHP 8.4+ compatible (no deprecation warnings)
+- Uses `scssphp/scssphp` v2 for Sass/SCSS (fully updated)
+- Less support via `oyejorge/less.php` (note: this package is abandoned, consider alternatives for future-proofing)
 - Tailwind CLI (bundled or installed via npm)
 
 ## Example CLI Commands
@@ -53,5 +55,8 @@ php myne stylist:watch --type=tailwind --input=resources/themes/noir/tailwind.cs
 php myne stylist:compile --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
 php myne stylist:watch --type=sass --input=resources/themes/noir/style.scss --output=public/css/noir.css
 ```
+
+## Deprecation-Free
+Stylist and Mynorel are now fully compatible with PHP 8.4+ and have no deprecation warnings in core or CSS compilation. All CLI commands and signatures are up to date.
 
 Stylist brings narrative theming and modern CSS to every Mynorel story.
