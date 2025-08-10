@@ -1,4 +1,3 @@
-
 # Mynorel Cloud
 
 Mynorel Cloud integrates with cloud providers for deployment, scaling, and management. Integrated with config, services, and the extension system, and logs actions via Chronicle.
@@ -25,4 +24,12 @@ try {
 } catch (Exception $e) {
 	// Handle unauthorized or error
 }
+```
+
+## CLI Usage
+
+Deploy an app to a provider:
+
+```bash
+php myne cloud:deploy --user=alice --app=my-app --provider=aws
 ```

@@ -1,4 +1,3 @@
-
 # Mynorel Media
 
 Mynorel Media manages files, images, and other media assets as part of your narrative. Integrated with config, services, and the extension system, and logs actions via Chronicle.
@@ -18,4 +17,12 @@ use Mynorel\Media\MediaService;
 
 $path = MediaService::upload($_FILES['file']);
 $media = MediaService::list();
+```
+
+## CLI Usage
+
+List all media assets:
+
+```bash
+php myne media:list --user=alice
 ```

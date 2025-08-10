@@ -22,4 +22,11 @@ class System
     {
         return SystemService::environment();
     }
+
+    public static function version(): string
+    {
+        // Try to get the latest Git tag for versioning
+        $version = @trim(shell_exec('git describe --tags --abbrev=0 2>/dev/null'));
+        return $version !== '' ? $version : 'dev';
+    }
 }

@@ -1,4 +1,3 @@
-
 # Mynorel Billing
 
 Mynorel Billing manages subscriptions, payments, and billing events as part of your narrative. Integrated with config, services, and the extension system, and logs actions via Chronicle.
@@ -25,4 +24,12 @@ try {
 } catch (Exception $e) {
 	// Handle unauthorized or error
 }
+```
+
+## CLI Usage
+
+Subscribe a user to a plan:
+
+```bash
+php myne billing:subscribe --user=alice --plan=premium
 ```

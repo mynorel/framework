@@ -1,4 +1,3 @@
-
 # Mynorel Resource
 
 Mynorel Resource provides a UI and logic for managing any resource/entity in your narrative. Integrated with config, services, and the extension system, and leverages Author for permissions and Chronicle for logging.
@@ -28,4 +27,12 @@ try {
 } catch (Exception $e) {
 	// Handle unauthorized or error
 }
+```
+
+## CLI Usage
+
+List all resources:
+
+```bash
+php myne resource:list --user=alice
 ```

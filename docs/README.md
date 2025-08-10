@@ -1,5 +1,45 @@
 # Mynorel Documentation
 
+## Getting Started
+
+1. **Install dependencies:**
+   ```bash
+   composer install
+   ```
+2. **Configure your database:**
+   Edit `config/database.php` (supports mysql, pgsql, sqlite, sqlsrv).
+3. **Autoload:**
+   ```php
+   require __DIR__ . '/vendor/autoload.php';
+   ```
+4. **Run onboarding:**
+   ```bash
+   php myne onboarding
+   ```
+5. **Explore the Mynorel Tour:**
+   ```bash
+   php myne tour
+   ```
+
+## Quickstart
+
+- **Create a model:**
+  ```bash
+  php myne make:model Hero
+  ```
+- **Create a controller:**
+  ```bash
+  php myne make:controller WelcomeController
+  ```
+- **List resources:**
+  ```bash
+  php myne resource:list --user=alice
+  ```
+- **Send a notification:**
+  ```bash
+  php myne notification:send --user=alice --message='Welcome!'
+  ```
+
 This directory contains important documentation for the Mynorel framework.
 
 - [Changelog](CHANGELOG.md)

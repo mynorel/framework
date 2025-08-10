@@ -1,4 +1,3 @@
-
 # Mynorel API
 
 Mynorel API scaffolds RESTful endpoints for your narrative, resources, and services. Integrated with config, services, and the extension system, and leverages Author for auth and Chronicle for logging.
@@ -18,4 +17,12 @@ APIs are narrative gateways. All logic is modular, extensible, and narrative-cen
 use Mynorel\Api\ApiService;
 
 $response = ApiService::handle($request);
+```
+
+## CLI Usage
+
+List all API endpoints or handle a request:
+
+```bash
+php myne api:handle --request='{"endpoint":"/v1/posts","method":"GET"}' --user=alice
 ```

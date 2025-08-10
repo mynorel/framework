@@ -1,4 +1,3 @@
-
 # Mynorel Notification
 
 Mynorel Notification delivers messages, alerts, and emails to users as part of the narrative. Integrated with config, services, and the extension system, and logs actions via Chronicle.
@@ -16,4 +15,12 @@ Notifications are narrative events. All logic is modular, extensible, and narrat
 use Mynorel\Notification\NotificationService;
 
 NotificationService::send($user, 'Welcome to Mynorel!');
+```
+
+## CLI Usage
+
+Send a notification:
+
+```bash
+php myne notification:send --user=alice --message='Welcome to Mynorel!'
 ```

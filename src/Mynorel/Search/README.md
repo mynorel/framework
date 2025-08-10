@@ -1,4 +1,3 @@
-
 # Mynorel Search
 
 Mynorel Search provides full-text and structured search for your narrative and resources. Integrated with config, services, and the extension system, and logs actions via Chronicle.
@@ -25,4 +24,12 @@ try {
 } catch (Exception $e) {
 	// Handle unauthorized or error
 }
+```
+
+## CLI Usage
+
+Search the narrative:
+
+```bash
+php myne search:query --user=alice --query='hero'
 ```

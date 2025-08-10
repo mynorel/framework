@@ -1,4 +1,3 @@
-
 # Mynorel Plugin
 
 Mynorel Plugin manages the discovery, activation, and configuration of plugins and themes. Integrated with config, services, and the extension system, and logs actions via Chronicle.
@@ -26,4 +25,12 @@ try {
 } catch (Exception $e) {
 	// Handle unauthorized or error
 }
+```
+
+## CLI Usage
+
+List all plugins:
+
+```bash
+php myne plugin:list --user=alice
 ```

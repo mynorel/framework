@@ -19,23 +19,9 @@ Mynorel lets you build your app as a story: every model is a character, every re
 - **Controllers are narrators.**
 - **Middleware is a prelude.**
 - **Handlers are rituals.**
-- **Guards are sentinels.**
 - **Plugins are side stories.**
 # Mynorel Framework
-
-> **A narrative-first PHP framework for expressive, modular, and modern applications.**
-
-Mynorel lets you build your app as a story: every model is a character, every request a scene, every query a turning point. Its architecture is modular, composable, and poetic—designed for clarity, power, and joy.
-
----
-
-
-## 📚 Documentation
-
-- [docs/README.md](docs/README.md) — Start here for all framework docs
-- [docs/CHANGELOG.md](docs/CHANGELOG.md) — Changelog
 - [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) — Contribution guide
-- [docs/directives.md](docs/directives.md) — Myneral template/view directives
 - [docs/theming.md](docs/theming.md) — Theming and UI
 - [docs/testing.md](docs/testing.md) — Testing and QA
 - [docs/architecture.md](docs/architecture.md) — Architecture overview
@@ -44,10 +30,6 @@ Mynorel lets you build your app as a story: every model is a character, every re
 ---
 
 ## ✨ Philosophy
-
-- **Models are characters.**
-- **Controllers are narrators.**
-- **Middleware is a prelude.**
 - **Handlers are rituals.**
 - **Guards are sentinels.**
 - **Plugins are side stories.**
@@ -86,8 +68,6 @@ Mynorel includes a robust, Blade-like template engine called Myneral, supporting
 - Directives: `@can`, `@role`, `@if`, `@show`, and custom
 - Context: Pass data to templates for dynamic rendering
 
-**Example template:**
-```blade
 @layout('main')
 @flow('onboarding')
 
@@ -167,38 +147,24 @@ echo Myneral::render($template, $context);
 	Edit `config/database.php` (supports mysql, pgsql, sqlite, sqlsrv).
 3. **Autoload:**
 	```php
-	require __DIR__ . '/vendor/autoload.php';
 	```
 4. **Use Plotline ORM:**
-	```php
 	use Mynorel\Plotline\Plots\PostPlot;
 	$posts = PostPlot::allRows();
 	$post = PostPlot::find(1);
 	$results = PostPlot::narrate()
-		 ->where('published_at', '<', date('Y-m-d'))
 		 ->orderBy('published_at', 'desc')
 		 ->tell();
 	```
-5. **Use Middleware (Prelude):**
 	```php
-	use Mynorel\Prelude\Prelude;
-	Prelude::run([Authenticate::class, SetLocale::class], $context);
-	```
 6. **Use Services:**
-	```php
 	use Mynorel\Services\ChronicleService;
 	ChronicleService::note('A new chapter begins.');
-	```
 
-
-7. **Boot Extensions (Side Stories):**
-	```php
 	use Mynorel\Facades\Extension;
-	Extension::bootAll();
 	```
 	This loads all registered plugins (side stories) into your Mynorel app.
 
-8. **Run Tests (Narrative Style):**
 	```bash
 	php myne test
 	```
@@ -222,17 +188,12 @@ echo Myneral::render($template, $context);
 - **Swap or extend any service for plugins or custom logic.**
 - **Integrate with any PHP library via Composer.**
 
----
-
 ## 📚 Documentation
 - See `/tests/` for test examples and to add your own.
 
-- See `/src/Mynorel/Plotline/README.md` for ORM details.
-- See `/src/Mynorel/Prelude/README.md` for middleware.
 - See `/src/Mynorel/Services/README.md` for services and extension.
 
 ---
-
 ## 🧪 Testing
 
 ---
@@ -242,14 +203,12 @@ echo Myneral::render($template, $context);
 Herald brings real-time narrative to Mynorel using Workerman. Broadcast, listen, and narrate live events and story fragments.
 
 ```php
-use Mynorel\Facades\Herald;
 // Start the WebSocket server
 Herald::start(8080);
 // Broadcast a message
 Herald::broadcast('story', 'A new chapter begins!');
 // Listen for messages
 Herald::listen('story', function($msg) {
-	echo "[Herald] $msg\n";
 });
 ```
 Or via CLI:
@@ -259,7 +218,6 @@ php myne herald broadcast story "A new chapter begins!"
 php myne herald listen story
 ```
 
-- Mynorel includes a built-in test runner command: `php myne test`
 - Tests use PHPUnit by default. Install with:
 	```bash
 	composer require --dev phpunit/phpunit

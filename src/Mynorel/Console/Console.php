@@ -50,6 +50,11 @@ class Console
      */
     protected function registerDefaults(): void
     {
+    $this->register(new \Mynorel\Console\Commands\MakeModelCommand());
+    $this->register(new \Mynorel\Console\Commands\MakeControllerCommand());
+    $this->register(new \Mynorel\Console\Commands\PlaygroundCommand());
+    $this->register(new \Mynorel\Console\Commands\TourCommand());
+    $this->register(new \Mynorel\Console\Commands\NewAppCommand());
     $this->register(new \Mynorel\Console\Commands\PageTurnerCommand());
     $this->register(new \Mynorel\Console\Commands\InstallCommand());
     $this->register(new \Mynorel\Console\Commands\PhilosophyCommand());
@@ -69,6 +74,15 @@ class Console
     $this->register(new \Mynorel\Console\Commands\HeraldCommand());
     $this->register(new \Mynorel\Console\Commands\DocsGenerateCommand());
     $this->register(new \Mynorel\Console\Commands\ViewRenderCommand());
+    // New feature commands
+    $this->register(new \Mynorel\Console\Commands\ResourceListCommand());
+    $this->register(new \Mynorel\Console\Commands\PluginListCommand());
+    $this->register(new \Mynorel\Console\Commands\BillingSubscribeCommand());
+    $this->register(new \Mynorel\Console\Commands\CloudDeployCommand());
+    $this->register(new \Mynorel\Console\Commands\MediaListCommand());
+    $this->register(new \Mynorel\Console\Commands\NotificationSendCommand());
+    $this->register(new \Mynorel\Console\Commands\SearchQueryCommand());
+    $this->register(new \Mynorel\Console\Commands\ApiHandleCommand());
     }
 
     /**
