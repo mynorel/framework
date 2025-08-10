@@ -50,6 +50,7 @@ abstract class Plot
         return $qb->table(static::table())->get();
     }
 
+
     /**
      * Find a record by primary key (find a protagonist).
      */

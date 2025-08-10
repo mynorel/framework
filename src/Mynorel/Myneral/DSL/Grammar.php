@@ -20,7 +20,8 @@ class Grammar
         $errors = [];
 
         // Regex for @directive('arg') and block start/end
-        $pattern = '/@(\w+)(\(([^)]*)\))?|@(end\w+)/';
+    // Accept any @word(...) as a directive, not just a hardcoded set
+    $pattern = '/@(\w+)(\(([^)]*)\))?|@(end\w+)/';
         while (preg_match($pattern, $template, $match, PREG_OFFSET_CAPTURE, $offset)) {
             $full = $match[0][0];
             $pos = $match[0][1];
@@ -32,12 +33,27 @@ class Grammar
             if (!empty($match[1][0])) {
                 // Block start or inline directive
                 $name = $match[1][0];
-                $args = isset($match[3][0]) ? trim($match[3][0], "'\" ") : '';
+                $argsRaw = isset($match[3][0]) ? $match[3][0] : '';
+                $args = [];
+                if ($argsRaw !== '') {
+                    // Improved: parse quoted arguments, allowing commas inside quotes
+                    preg_match_all('/(["\'])(.*?)\1|([^,\s]+)/', $argsRaw, $matches);
+                    foreach ($matches[0] as $arg) {
+                        $arg = trim($arg);
+                        if ($arg === '') continue;
+                        // Remove surrounding quotes if present
+                        if ((str_starts_with($arg, '"') && str_ends_with($arg, '"')) || (str_starts_with($arg, "'") && str_ends_with($arg, "'"))) {
+                            $arg = substr($arg, 1, -1);
+                        }
+                        $args[] = $arg;
+                    }
+                }
                 // Check if this is a block directive (has a matching end)
                 if (self::isBlockDirective($name)) {
                     $blockStack[] = ['name' => $name, 'start' => count($tokens)];
                     $tokens[] = ['type' => 'block_start', 'directive' => $name, 'args' => $args];
                 } else {
+                    // Always treat as a directive, even if not hardcoded
                     $tokens[] = ['type' => 'directive', 'directive' => $name, 'args' => $args];
                 }
             } elseif (!empty($match[4][0])) {

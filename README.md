@@ -14,6 +14,34 @@ Mynorel lets you build your app as a story: every model is a character, every re
 - **Handlers are rituals.**
 - **Guards are sentinels.**
 - **Plugins are side stories.**
+# Mynorel Framework
+
+> **A narrative-first PHP framework for expressive, modular, and modern applications.**
+
+Mynorel lets you build your app as a story: every model is a character, every request a scene, every query a turning point. Its architecture is modular, composable, and poetic—designed for clarity, power, and joy.
+
+---
+
+## 📚 Documentation
+
+- [docs/README.md](docs/README.md) — Start here for all framework docs
+- [docs/CHANGELOG.md](docs/CHANGELOG.md) — Changelog
+- [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) — Contribution guide
+- [docs/directives.md](docs/directives.md) — Myneral template/view directives
+- [docs/theming.md](docs/theming.md) — Theming and UI
+- [docs/testing.md](docs/testing.md) — Testing and QA
+- [docs/architecture.md](docs/architecture.md) — Architecture overview
+
+---
+
+## ✨ Philosophy
+
+- **Models are characters.**
+- **Controllers are narrators.**
+- **Middleware is a prelude.**
+- **Handlers are rituals.**
+- **Guards are sentinels.**
+- **Plugins are side stories.**
 - **Queries are turning points.**
 - **Configuration is the script.**
 
@@ -23,7 +51,6 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 
 ## 🚀 Features
 - **PageTurner (Pagination):** Narrative pagination for lists, models, and queries—each page is a chapter.
-
 - **Plotline ORM:** Narrative-driven, expressive, and supports MySQL, PostgreSQL, SQLite, SQL Server.
 - **Prelude Middleware:** Modular pipelines, global and per-sequence, with narrative metaphors.
 - **Services Layer:** Business logic, logging, authorization, theming, and more—injectable and extendable.
@@ -38,63 +65,9 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 
 ---
 
-## 🗂️ Project Structure
-
-```
-project/
-├── config/           # All configuration (database, app, etc.)
-├── src/
-│   ├── Mynorel/
-│   │   ├── Plotline/     # ORM, models, query builder
-│   │   ├── Prelude/      # Middleware, contracts
-│   │   ├── Services/     # Business logic, logging, auth, theming
-│   │   ├── Console/      # CLI commands
-│   │   ├── Extensions/   # Plugins (side stories), ExtensionManager
-│   │   ├── Sentinels/    # Guards (access control, workflows)
-│   │   ├── Rituals/      # Handlers (actions, rituals)
-│   │   ├── ...           # More features (Narrative, Myneral, etc.)
-│   └── ...
-├── vendor/           # Composer dependencies
-└── ...
-```
-
----
-
 ## ⚡ Quickstart
-11. **Paginate with PageTurner:**
-12. **Cache with MemoryPalace:**
-	```php
-	use Mynorel\Facades\MemoryPalace;
-	// Store a value
-	MemoryPalace::inscribe('hero', 'Alice', 60); // 60 seconds
-	// Retrieve a value
-	$name = MemoryPalace::recall('hero');
-	// Forget a value
-	MemoryPalace::forget('hero');
-	// Clear all cached fragments
-	MemoryPalace::clear();
-	```
-	Or via CLI:
-	```bash
-	php myne memorypalace inscribe hero Alice
-	php myne memorypalace recall hero
-	php myne memorypalace forget hero
-	php myne memorypalace clear
-	```
-	```php
-	use Mynorel\PageTurner\PageTurner;
-	$items = range(1, 100);
-	$paginator = new PageTurner($items, 10, 1); // 10 per page, page 1
-	$current = $paginator->currentChapter();
-	$next = $paginator->nextChapter();
-	$total = $paginator->totalChapters();
-	```
-	Or via CLI:
-	```bash
-	php myne paginate 1,2,3,4,5,6,7,8,9,10,11,12 5 2
-	# Shows page 2 of the list, 5 items per page
-	```
-10. **Use the Scriptorium (Service Container):**
+
+See the docs for usage examples and guides.
 	```php
 	use Mynorel\Scriptorium\Scriptorium;
 	Scriptorium::singleton('bard', fn() => new Bard());

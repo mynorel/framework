@@ -17,7 +17,7 @@ abstract class BaseDirective
      * @param string $content
      * @return void
      */
-    public function setContent(string $content): void
+    public function setContent(?string $content): void
     {
         $this->content = $content;
     }
