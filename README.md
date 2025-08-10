@@ -18,7 +18,6 @@ Mynorel lets you build your app as a story: every model is a character, every re
 - **Middleware is a prelude.**
 - **Handlers are rituals.**
 - **Plugins are side stories.**
-# Mynorel Framework
 - [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) — Contribution guide
 - [docs/theming.md](docs/theming.md) — Theming and UI
 - [docs/testing.md](docs/testing.md) — Testing and QA
