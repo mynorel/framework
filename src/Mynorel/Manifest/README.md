@@ -3,7 +3,7 @@
 
 The Manifest layer declares the identity of the framework: what is Mynorel, what modules are active, and what is its onboarding story?
 
-It exposes contracts for CLI, templating, and app layers to introspect and interact. This enables narrative flows in commands like `myne philosophy` or `myne plotline:map`.
+It exposes contracts for CLI, templating, and app layers to introspect and interact. This enables narrative flows in commands like `mynorel philosophy` or `mynorel plotline:map`.
 
 ## Core: Manifest Class
 
@@ -27,11 +27,11 @@ echo Manifest::describe();
 
 The Manifest layer powers CLI commands for introspection:
 
-- `myne manifest` — shows all framework modules and philosophy (colorized output)
-- `myne philosophy` — prints the framework's philosophy
-- `myne plotline:map` — lists all plotlines (models/ORM)
-- `myne list` — lists all available CLI commands
-- `myne help` — shows help for all CLI commands
+- `mynorel manifest` — shows all framework modules and philosophy (colorized output)
+- `mynorel philosophy` — prints the framework's philosophy
+- `mynorel plotline:map` — lists all plotlines (models/ORM)
+- `mynorel list` — lists all available CLI commands
+- `mynorel help` — shows help for all CLI commands
 
 These commands use the Manifest facade to access meta-information about the framework. Output is colorized for clarity using the SyntaxColorizer.
 

@@ -14,7 +14,7 @@ class ViewRenderCommand implements CommandInterface
         \Mynorel\Myneral\Layouts\LayoutManager::registerTestLayouts();
         \Mynorel\Myneral\Flows\FlowManager::registerTestFlows();
         if (empty($input[0])) {
-            echo "Usage: view:render <template> [json_context]\n";
+            echo "Usage: view:render <template (.myneral.php)> [json_context]\n";
             return 1;
         }
         $templatePath = $input[0];

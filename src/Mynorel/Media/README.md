@@ -24,5 +24,5 @@ $media = MediaService::list();
 List all media assets:
 
 ```bash
-php myne media:list --user=alice
+php mynorel media:list --user=alice
 ```

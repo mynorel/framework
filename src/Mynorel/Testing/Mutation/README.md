@@ -8,7 +8,7 @@ MutationTest simulates mutation testing for your Mynorel codebase. It introduces
 
 Run from the CLI:
 ```
-php myne test:mutation
+php mynorel test:mutation
 ```
 
 ## Features

@@ -76,7 +76,7 @@ Gate::policyClass('edit-post', \Mynorel\Author\Policies\EditPostPolicy::class);
 
 In Directives:
 
-```php myneral
+```php
 @can('edit-post')
     <button>Edit</button>
 @endcan
@@ -87,7 +87,7 @@ In Directives:
 ```
 
 Or even more poetic:
-```php myneral
+```php
 @as('editor')
     <button>Write Chapter</button>
 @endas

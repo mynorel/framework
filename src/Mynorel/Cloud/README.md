@@ -31,5 +31,5 @@ try {
 Deploy an app to a provider:
 
 ```bash
-php myne cloud:deploy --user=alice --app=my-app --provider=aws
+php mynorel cloud:deploy --user=alice --app=my-app --provider=aws
 ```

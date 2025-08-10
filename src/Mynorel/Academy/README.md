@@ -7,7 +7,7 @@ The Mynorel Academy provides onboarding and interactive tutorials for new and ex
 
 Start the Academy from the CLI:
 ```
-php myne academy
+php mynorel academy
 ```
 
 ## Features

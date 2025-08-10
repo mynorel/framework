@@ -7,12 +7,12 @@ Discover, install, and manage Mynorel plugins from a central registry.
 
 List available plugins:
 ```
-php myne marketplace
+php mynorel marketplace
 ```
 
 Install a plugin:
 ```
-php myne marketplace install <plugin>
+php mynorel marketplace install <plugin>
 ```
 
 

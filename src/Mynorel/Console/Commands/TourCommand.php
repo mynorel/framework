@@ -14,7 +14,7 @@ class TourCommand implements \Mynorel\Console\Contracts\CommandInterface
         StylizedPrinter::info("2. Controllers are narrators. Try: php myne make:controller WelcomeController");
         StylizedPrinter::info("3. Use Facades for narrative logic. Try: Narrative::chapter('intro')");
         StylizedPrinter::info("4. Use CLI for all features. Try: php myne resource:list --user=alice");
-        StylizedPrinter::info("5. Templates are stories. Edit a .myne file and render with Myneral.");
+    StylizedPrinter::info("5. Templates are stories. Edit a .myneral.php file and render with Myneral.");
         StylizedPrinter::info("6. Explore plugins, billing, cloud, and more via CLI and Facades.");
         StylizedPrinter::poetic("Your narrative is yours to write. See docs/ for more.");
         return 0;

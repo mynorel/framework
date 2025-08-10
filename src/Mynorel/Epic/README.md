@@ -14,8 +14,8 @@ Epic::start('send_newsletter', 'alice@example.com');
 
 Or via CLI:
 ```bash
-php myne epic send_newsletter alice@example.com
-php myne epic list
+php mynorel epic send_newsletter alice@example.com
+php mynorel epic list
 ```
 
 ## Philosophy

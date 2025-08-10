@@ -9,7 +9,7 @@ A real-time dashboard for Herald events, channels, and live narrative updates.
 ## Usage
 CLI:
 ```
-php myne herald:dashboard
+php mynorel herald:dashboard
 ```
 Web (live):
 ```

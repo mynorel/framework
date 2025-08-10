@@ -31,5 +31,5 @@ try {
 Search the narrative:
 
 ```bash
-php myne search:query --user=alice --query='hero'
+php mynorel search:query --user=alice --query='hero'
 ```

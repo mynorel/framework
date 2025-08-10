@@ -7,7 +7,7 @@ Snapshot testing for Mynorel: compare output to stored snapshots for regression 
 
 Run from the CLI:
 ```
-php myne test:snapshot <output.txt> <snapshot.snap>
+php mynorel test:snapshot <output.txt> <snapshot.snap>
 ```
 
 ## Features

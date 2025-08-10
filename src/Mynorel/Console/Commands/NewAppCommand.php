@@ -28,7 +28,7 @@ namespace Mynorel\Console\Commands;
                 }
                 $output[] = "[debug] Resolved targetDir: $targetDir\n";
                 if (!$targetDir) {
-                    $output[] = "\nPlease specify a directory for your new Mynorel app.\nUsage: myne new <directory>\n";
+                    $output[] = "\nPlease specify a directory for your new Mynorel app.\nUsage: mynorel new <directory>\n";
                     return 1;
                 }
                 if (file_exists($targetDir)) {
@@ -104,7 +104,7 @@ namespace Mynorel\Console\Commands;
                             ]
                         ],
                         'scripts' => [
-                            'myne' => 'php myne',
+                            'mynorel' => 'php mynorel',
                             'post-create-project-cmd' => [
                                 '@composer install',
                                 'echo "Welcome to Mynorel! Start your story in src/Narrative.php."'
@@ -129,48 +129,48 @@ namespace Mynorel\Console\Commands;
                 file_put_contents("$targetDir/config/database.php", "<?php\nreturn [\n    'driver' => 'sqlite',\n    'database' => __DIR__ . '/../database.sqlite',\n];\n");
                 file_put_contents("$targetDir/config/narrative.php", "<?php\nreturn [\n    'chapters' => [],\n    'characters' => [],\n    'scenes' => [],\n];\n");
                 // README with badges
-                file_put_contents("$targetDir/README.md", "# Mynorel App Skeleton\n\n<div align=\"center\">\n    <img alt=\"CI\" src=\"https://github.com/mynorel/framework/actions/workflows/ci.yml/badge.svg\" />\n    <img alt=\"Packagist\" src=\"https://img.shields.io/packagist/v/mynorel/framework.svg\" />\n    <img alt=\"License: MIT\" src=\"https://img.shields.io/badge/license-MIT-blue.svg\" />\n</div>\n\nThis is a narrative-driven app scaffolded by `myne new`.\n\n## Structure\n\n- `composer.json` — PHP dependencies (includes `mynorel/framework`)\n- `mynorel.json` — App config (Mynorel-specific)\n- `config/` — App, database, and narrative config\n- `src/` — Narrative logic (Chapters, Characters, Scenes, StoryMap, Narrative, Facades, Providers, Controllers, Extensions)\n- `public/` — Web entry point (`index.php`, `.htaccess`)\n- `prelude/` — Bootstrapping, pipelines, middleware\n- `chronicle/` — Logging, error handling, events\n- `resources/` — Views, themes, assets, lang\n- `database/` — Migrations, seeds, SQLite\n- `tests/` — App tests\n- `scripts/` — CLI scripts, onboarding, playground\n- `myne` — CLI entry point for your app\n\n## Quickstart\n\n1. Install dependencies:\n   ```sh\n   composer install\n   ```\n2. Copy `.env.example` to `.env` and edit as needed.\n3. Run the CLI:\n   ```sh\n   ./myne\n   ```\n4. Start the web server:\n   ```sh\n   php -S localhost:8000 -t public\n   ```\n5. Start building your narrative-driven app!\n\nSee `onboarding.md` for more details.\n");
+                file_put_contents("$targetDir/README.md", "# Mynorel App Skeleton\n\n<div align=\"center\">\n    <img alt=\"CI\" src=\"https://github.com/mynorel/framework/actions/workflows/ci.yml/badge.svg\" />\n    <img alt=\"Packagist\" src=\"https://img.shields.io/packagist/v/mynorel/framework.svg\" />\n    <img alt=\"License: MIT\" src=\"https://img.shields.io/badge/license-MIT-blue.svg\" />\n</div>\n\nThis is a narrative-driven app scaffolded by `mynorel new`.\n\n## Structure\n\n- `composer.json` — PHP dependencies (includes `mynorel/framework`)\n- `mynorel.json` — App config (Mynorel-specific)\n- `config/` — App, database, and narrative config\n- `src/` — Narrative logic (Chapters, Characters, Scenes, StoryMap, Narrative, Facades, Providers, Controllers, Extensions)\n- `public/` — Web entry point (`index.php`, `.htaccess`)\n- `prelude/` — Bootstrapping, pipelines, middleware\n- `chronicle/` — Logging, error handling, events\n- `resources/` — Views, themes, assets, lang\n- `database/` — Migrations, seeds, SQLite\n- `tests/` — App tests\n- `scripts/` — CLI scripts, onboarding, playground\n- `mynorel` — CLI entry point for your app\n\n## Quickstart\n\n1. Install dependencies:\n   ```sh\n   composer install\n   ```\n2. Copy `.env.example` to `.env` and edit as needed.\n3. Run the CLI:\n   ```sh\n   ./mynorel\n   ```\n4. Start the web server:\n   ```sh\n   php -S localhost:8000 -t public\n   ```\n5. Start building your narrative-driven app!\n\nSee `onboarding.md` for more details.\n");
                 // onboarding
-                file_put_contents("$targetDir/onboarding.md", "# Onboarding\n\nWelcome to your Mynorel app!\n\n- Edit `src/Narrative.php` to define your app's kernel.\n- Add chapters, characters, and scenes in `src/`.\n- Customize config in `config/`.\n- Start the CLI with `./myne` or the web server with `php -S localhost:8000 -t public`.\n");
+                file_put_contents("$targetDir/onboarding.md", "# Onboarding\n\nWelcome to your Mynorel app!\n\n- Edit `src/Narrative.php` to define your app's kernel.\n- Add chapters, characters, and scenes in `src/`.\n- Customize config in `config/`.\n- Start the CLI with `./mynorel` or the web server with `php -S localhost:8000 -t public`.\n");
                 // public/index.php
                 file_put_contents("$targetDir/public/index.php", "<?php\n// Mynorel app web entry point\nrequire __DIR__ . '/../src/Narrative.php';\n");
                 // src/Narrative.php
-                file_put_contents("$targetDir/src/Narrative.php", "<?php\nnamespace Mynorel;\n// App kernel/entry point.\n// Bootstrap your app here.\n\nclass Narrative {\n    public function start() {\n        echo 'Welcome to Mynorel! Edit src/Narrative.php to build your story.';\n    }\n}\n\n// To get started, run: php myne\n");
+                file_put_contents("$targetDir/src/Narrative.php", "<?php\nnamespace Mynorel;\n// App kernel/entry point.\n// Bootstrap your app here.\n\nclass Narrative {\n    public function start() {\n        echo 'Welcome to Mynorel! Edit src/Narrative.php to build your story.';\n    }\n}\n\n// To get started, run: php mynorel\n");
                 // src/StoryMap.php
                 file_put_contents("$targetDir/src/StoryMap.php", "<?php\n// Define your app's narrative flow/routes here.\n");
                 // prelude/Prelude.php
                 file_put_contents("$targetDir/src/Prelude.php", "<?php\n// Bootstrapping and pipelines.\n");
                 // chronicle/Chronicle.php
                 file_put_contents("$targetDir/src/Chronicle.php", "<?php\n// Logging and events.\n");
-                // resources/views/welcome.myne
-                file_put_contents("$targetDir/resources/views/welcome.myne", "@layout('main')\n@section('content')\nWelcome to your new Mynorel app!\n@endsection\n");
+                // resources/views/welcome.myneral.php
+                file_put_contents("$targetDir/resources/views/welcome.myneral.php", "@layout('main')\n@section('content')\nWelcome to your new Mynorel app!\n@endsection\n");
                 // tests/ExampleTest.php
                 file_put_contents("$targetDir/tests/ExampleTest.php", "<?php\n\nuse PHPUnit\\Framework\\TestCase;\n\nclass ExampleTest extends TestCase\n{\n    public function testTrue()\n    {\n        self::assertTrue(true);\n    }\n}\n");
                 // scripts/playground.php
                 file_put_contents("$targetDir/scripts/playground.php", "<?php\n// Try out Mynorel features here.\n");
-                // Scaffold the myne CLI script
-                $myneScript = <<<'EOPHP'
-        #!/usr/bin/env php
-        <?php
+                // Scaffold the mynorel CLI script
+                $mynorelScript = <<<'EOPHP'
+#!/usr/bin/env php
+<?php
 
-        // Mynorel CLI entry point for your app.
+// Mynorel CLI entry point for your app.
 
-        if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-            fwrite(STDERR, "\n[ERROR] Please run 'composer install' before using the Mynorel CLI.\n");
-            exit(1);
-        }
-        require __DIR__ . '/vendor/autoload.php';
+if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
+    fwrite(STDERR, "\n[ERROR] Please run 'composer install' before using the Mynorel CLI.\n");
+    exit(1);
+}
+require __DIR__ . '/vendor/autoload.php';
 
-        echo "\nWelcome to Mynorel CLI!\n";
-        if (class_exists('Mynorel\\Narrative')) {
-            (new Mynorel\Narrative())->start();
-        } else {
-            echo "\nEdit src/Narrative.php to begin your story.\n";
-        }
-        EOPHP;
-                file_put_contents("$targetDir/myne", $myneScript);
-                chmod("$targetDir/myne", 0755);
-                $output[] = "\nMynorel app skeleton created in '$targetDir' (with myne CLI script).\n";
+echo "\nWelcome to Mynorel CLI!\n";
+if (class_exists('Mynorel\\Narrative')) {
+    (new Mynorel\Narrative())->start();
+} else {
+    echo "\nEdit src/Narrative.php to begin your story.\n";
+}
+EOPHP;
+                file_put_contents("$targetDir/mynorel", $mynorelScript);
+                chmod("$targetDir/mynorel", 0755);
+                $output[] = "\nMynorel app skeleton created in '$targetDir' (with mynorel CLI script).\n";
                 return 0;
             }
         }

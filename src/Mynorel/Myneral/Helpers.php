@@ -4,6 +4,25 @@ namespace Mynorel\Myneral;
 class Helpers
 {
     /**
+     * Find and return the path to a .myneral.php template by name.
+     * Looks in resources/views/ by default.
+     * Example: findTemplate('welcome') => resources/views/welcome.myneral.php
+     */
+    public static function findTemplate(string $name, array $paths = []): ?string
+    {
+        $searchPaths = $paths ?: [
+            __DIR__ . '/../../../resources/views/',
+            getcwd() . '/resources/views/',
+        ];
+        foreach ($searchPaths as $dir) {
+            $file = rtrim($dir, '/\\') . '/' . ltrim($name, '/\\') . '.myneral.php';
+            if (file_exists($file)) {
+                return $file;
+            }
+        }
+        return null;
+    }
+    /**
      * Escape HTML for output (like Blade's e()).
      */
     public static function escape($value): string

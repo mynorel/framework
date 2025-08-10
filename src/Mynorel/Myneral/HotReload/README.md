@@ -7,7 +7,7 @@ Watches template files and reloads on change for rapid development.
 
 Run from the CLI:
 ```
-php myne myneral:hotreload [path]
+php mynorel myneral:hotreload [path]
 ```
 
 ## Features

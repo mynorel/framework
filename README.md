@@ -92,17 +92,18 @@ See the docs for usage examples and guides, or start your first app:
 
 ```bash
 cd my-app
-php myne new
+php mynorel new
 ```
 
 ## Myneral Templates: Layouts, Flows, and Directives
 
-Mynorel includes a robust, Blade-like template engine called Myneral, supporting:
+Mynorel includes a robust, template engine called Myneral, supporting:
 - Layouts: `@layout('main')`, `@section('header')`, `@yield('content')`
 - Flows: `@flow('onboarding')` for narrative-driven UI logic
 - Directives: `@can`, `@role`, `@if`, `@show`, and custom
 - Context: Pass data to templates for dynamic rendering
 
+```php
 @layout('main')
 @flow('onboarding')
 
@@ -132,7 +133,7 @@ FlowManager::register('onboarding', new OnboardingFlow());
 **Rendering a template:**
 ```php
 use Mynorel\Myneral\Myneral;
-$template = file_get_contents('resources/views/dashboard.myne');
+$template = file_get_contents('resources/views/dashboard.myneral.php');
 $context = ['user' => ['name' => 'Alice', 'isNew' => true]];
 echo Myneral::render($template, $context);
 ```
@@ -156,8 +157,8 @@ echo Myneral::render($template, $context);
 	```
 	Or via CLI:
 	```bash
-	php myne epic send_newsletter alice@example.com
-	php myne epic list
+	php mynorel epic send_newsletter alice@example.com
+	php mynorel epic list
 	```
 
 9. **Switch or Preview Thematic Skins:**
@@ -169,9 +170,9 @@ echo Myneral::render($template, $context);
 	```
 	Or via CLI:
 	```bash
-	php myne skin noir
-	php myne skin list
-	php myne skin preview "A dark and stormy night..."
+	php mynorel skin noir
+	php mynorel skin list
+	php mynorel skin preview "A dark and stormy night..."
 	```
 
 1. **Install dependencies:**
@@ -201,8 +202,9 @@ echo Myneral::render($template, $context);
 	This loads all registered plugins (side stories) into your Mynorel app.
 
 	```bash
-	php myne test
+	php mynorel test
 	```
+**Built-in test runner:** Use `php mynorel test` for narrative test output. Add your own test cases in `tests/`.
 	Runs your PHPUnit test suite with Mynorel's narrative output. Requires PHPUnit (see below).
 
 ---
@@ -248,9 +250,9 @@ Herald::listen('story', function($msg) {
 ```
 Or via CLI:
 ```bash
-php myne herald start 8080
-php myne herald broadcast story "A new chapter begins!"
-php myne herald listen story
+php mynorel herald start 8080
+php mynorel herald broadcast story "A new chapter begins!"
+php mynorel herald listen story
 ```
 
 - Tests use PHPUnit by default. Install with:

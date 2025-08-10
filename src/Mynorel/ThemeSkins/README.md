@@ -15,9 +15,9 @@ echo ThemeSkins::format('A dark and stormy night...');
 
 Or via CLI:
 ```bash
-php myne skin noir
-php myne skin list
-php myne skin preview "A dark and stormy night..."
+php mynorel skin noir
+php mynorel skin list
+php mynorel skin preview "A dark and stormy night..."
 ```
 
 ## Philosophy

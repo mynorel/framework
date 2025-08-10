@@ -27,12 +27,12 @@ Herald is Mynorel’s narrative WebSocket layer, powered by Workerman. Broadcast
 
 Launch the real-time dashboard:
 ```
-php myne herald:dashboard
+php mynorel herald:dashboard
 ```
 
 Simulate an event:
 ```
-php myne herald:dashboard simulate <channel> <event>
+php mynorel herald:dashboard simulate <channel> <event>
 ```
 
 ---
@@ -64,9 +64,9 @@ Herald::listen('story', function($msg) {
 Interact with Herald directly from the Mynorel CLI:
 
 ```bash
-php myne herald start 8080
-php myne herald broadcast story "A new chapter begins!"
-php myne herald listen story
+php mynorel herald start 8080
+php mynorel herald broadcast story "A new chapter begins!"
+php mynorel herald listen story
 ```
 
 ---

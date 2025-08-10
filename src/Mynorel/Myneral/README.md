@@ -31,7 +31,7 @@ is a narrative frame. Every flow is a story in motion.
 ## How it Works
 
 
-1. Parsing: Myneral parses `.myne` files using its DSL grammar, supporting both inline and block directives (e.g., `@can ... @endcan`).
+1. Parsing: Myneral parses `.myneral.php` files using its DSL grammar, supporting both inline and block directives (e.g., `@can ... @endcan`).
 
 2. Compilation: Directives are compiled into PHP via the Myneral engine, with block content passed to directives as needed.
 
@@ -44,7 +44,7 @@ is a narrative frame. Every flow is a story in motion.
 
 ### Example: Block Directives and Error Handling
 
-```php myne
+```php
 @flow('onboarding')
 @layout('welcome')
 
@@ -115,7 +115,7 @@ FlowManager::register('onboarding', new OnboardingFlow());
 **Rendering a template:**
 ```php
 use Mynorel\Myneral\Myneral;
-$template = file_get_contents('resources/views/dashboard.myne');
+$template = file_get_contents('resources/views/dashboard.myneral.php');
 $context = ['user' => ['name' => 'Alice', 'isNew' => true]];
 echo Myneral::render($template, $context);
 ```

@@ -32,5 +32,5 @@ try {
 List all plugins:
 
 ```bash
-php myne plugin:list --user=alice
+php mynorel plugin:list --user=alice
 ```

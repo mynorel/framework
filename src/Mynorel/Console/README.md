@@ -23,13 +23,13 @@ The Console is Mynorel’s command chamber—a narrative interface for invoking 
 
 
 ```bash
-myne install
-myne philosophy
-myne chapter:list
-myne plotline:map
-myne manifest
-myne list
-myne help
+mynorel install
+mynorel philosophy
+mynorel chapter:list
+mynorel plotline:map
+mynorel manifest
+mynorel list
+mynorel help
 ```
 
 ## Narrative Output
@@ -38,7 +38,7 @@ myne help
 🌱 Mynorel has taken root.
 → Core, CLI, and Myneral templating are now alive.
 → Theme: myneral-dark
-→ Begin your journey: myne guide
+→ Begin your journey: mynorel guide
 
 → Chapters in your story:
  - home

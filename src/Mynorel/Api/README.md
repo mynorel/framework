@@ -24,5 +24,5 @@ $response = ApiService::handle($request);
 List all API endpoints or handle a request:
 
 ```bash
-php myne api:handle --request='{"endpoint":"/v1/posts","method":"GET"}' --user=alice
+php mynorel api:handle --request='{"endpoint":"/v1/posts","method":"GET"}' --user=alice
 ```

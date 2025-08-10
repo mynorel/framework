@@ -9,10 +9,10 @@ MemoryPalace is Mynorel’s narrative cache. Store, recall, and forget fragments
 Interact with the cache directly from the Mynorel CLI:
 
 ```bash
-php myne memorypalace inscribe hero Alice
-php myne memorypalace recall hero
-php myne memorypalace forget hero
-php myne memorypalace clear
+php mynorel memorypalace inscribe hero Alice
+php mynorel memorypalace recall hero
+php mynorel memorypalace forget hero
+php mynorel memorypalace clear
 ```
 
 Actions:

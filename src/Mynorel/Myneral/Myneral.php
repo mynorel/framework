@@ -163,7 +163,20 @@ class Myneral {
      * Render a Myneral template with context, flows, and layouts.
      * Automatically applies layout (@layout/@extends) and flow (@flow) if present.
      */
+    /**
+     * Render a Myneral template by name or content, with context, flows, and layouts.
+     * If $template is a file name (no slashes or .php), will look up .myneral.php in views.
+     */
     public static function render(string $template, array $context = [], ?string $templatePath = null): string {
+        // If $template is a simple name, try to find the .myneral.php file
+        if (strpos($template, "\n") === false && strpos($template, '<') === false && !preg_match('/[\\/]/', $template) && !str_ends_with($template, '.php')) {
+            $found = Helpers::findTemplate($template);
+            if ($found) {
+                $templatePath = $found;
+                $template = file_get_contents($found);
+            }
+        }
+
         // 1. Detect layout directive (e.g., @layout('main') or @extends('main'))
         $layout = null;
         if (preg_match("/@(?:layout|extends)\\(['\"]([^'\"]+)['\"]\\)/", $template, $m)) {

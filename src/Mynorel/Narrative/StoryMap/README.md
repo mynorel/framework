@@ -7,17 +7,17 @@ Visual and data-driven story mapping for chapters, scenes, and flows.
 
 Export story map as JSON:
 ```
-php myne storymap
+php mynorel storymap
 ```
 
 Import a story map:
 ```
-php myne storymap import <file>
+php mynorel storymap import <file>
 ```
 
 Show a summary:
 ```
-php myne storymap summary
+php mynorel storymap summary
 ```
 
 ## Features

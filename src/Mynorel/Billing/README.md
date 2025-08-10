@@ -31,5 +31,5 @@ try {
 Subscribe a user to a plan:
 
 ```bash
-php myne billing:subscribe --user=alice --plan=premium
+php mynorel billing:subscribe --user=alice --plan=premium
 ```

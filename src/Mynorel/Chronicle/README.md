@@ -16,7 +16,7 @@ Chronicle::interrupt('Database connection lost');
 Mynorel is about developer experience. Logging can serve as a journal of decisions, CLI actions, and framework evolution.
 
 ```bash
-myne journal
+mynorel journal
 → Aug 9: Installed Plotline
 → Aug 10: Created directive @echo
 → Aug 11: Theme changed to myneral-dark
@@ -26,18 +26,18 @@ myne journal
 
 Chronicle provides two CLI commands:
 
-- `myne log` — Show the narrative log in poetic style
-- `myne journal` — Show the developer journal (date + message)
+- `mynorel log` — Show the narrative log in poetic style
+- `mynorel journal` — Show the developer journal (date + message)
 
 Example output:
 
 ```bash
-myne log
+mynorel log
 → [info] A note: User logged in
 → [warn] A shadow falls: Missing directive: @flow
 → [chapter] A new chapter begins: Migration started
 
-myne journal
+mynorel journal
 → Aug 9: User logged in
 → Aug 9: Migration started
 ```

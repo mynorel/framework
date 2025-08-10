@@ -22,5 +22,5 @@ NotificationService::send($user, 'Welcome to Mynorel!');
 Send a notification:
 
 ```bash
-php myne notification:send --user=alice --message='Welcome to Mynorel!'
+php mynorel notification:send --user=alice --message='Welcome to Mynorel!'
 ```

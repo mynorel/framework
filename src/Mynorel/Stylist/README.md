@@ -5,7 +5,7 @@ Stylist is Mynorel’s narrative-driven CSS compiler and asset pipeline. It empo
 ## Philosophy
 - **Narrative Theming:** Styles are part of your story. Stylist lets you write, compile, and swap themes using your favorite CSS tools.
 - **Universal Support:** Use Tailwind for utility-first, Sass for variables and nesting, or plain CSS/PostCSS for custom pipelines.
-- **CLI-First:** Compile, watch, and optimize styles with expressive CLI commands (`php myne stylist:compile`, `php myne stylist:watch`).
+- **CLI-First:** Compile, watch, and optimize styles with expressive CLI commands (`php mynorel stylist:compile`, `php mynorel stylist:watch`).
 - **Extensible:** Plugins and themes can declare their own styles, which are auto-compiled and namespaced.
 
 ## Features
@@ -20,13 +20,13 @@ Stylist is Mynorel’s narrative-driven CSS compiler and asset pipeline. It empo
 
 ### Compile Styles
 ```bash
-php myne stylist:compile --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
-php myne stylist:compile --type=sass --input=resources/themes/noir/style.scss --output=public/css/noir.css
+php mynorel stylist:compile --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
+php mynorel stylist:compile --type=sass --input=resources/themes/noir/style.scss --output=public/css/noir.css
 ```
 
 ### Watch for Changes
 ```bash
-php myne stylist:watch --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
+php mynorel stylist:watch --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
 ```
 
 ### Theming
@@ -50,8 +50,8 @@ php myne stylist:watch --type=tailwind --input=resources/themes/noir/tailwind.cs
 
 ## Example CLI Commands
 ```bash
-php myne stylist:compile --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
-php myne stylist:watch --type=sass --input=resources/themes/noir/style.scss --output=public/css/noir.css
+php mynorel stylist:compile --type=tailwind --input=resources/themes/noir/tailwind.css --output=public/css/noir.css
+php mynorel stylist:watch --type=sass --input=resources/themes/noir/style.scss --output=public/css/noir.css
 ```
 
 ## Deprecation-Free

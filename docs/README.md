@@ -14,30 +14,30 @@
    ```
 4. **Run onboarding:**
    ```bash
-   php myne onboarding
+   php mynorel onboarding
    ```
 5. **Explore the Mynorel Tour:**
    ```bash
-   php myne tour
+   php mynorel tour
    ```
 
 ## Quickstart
 
 - **Create a model:**
   ```bash
-  php myne make:model Hero
+   php mynorel make:model Hero
   ```
 - **Create a controller:**
   ```bash
-  php myne make:controller WelcomeController
+   php mynorel make:controller WelcomeController
   ```
 - **List resources:**
   ```bash
-  php myne resource:list --user=alice
+   php mynorel resource:list --user=alice
   ```
 - **Send a notification:**
   ```bash
-  php myne notification:send --user=alice --message='Welcome!'
+   php mynorel notification:send --user=alice --message='Welcome!'
   ```
 
 This directory contains important documentation for the Mynorel framework.

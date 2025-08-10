@@ -7,7 +7,7 @@ Diagnose and fix common Mynorel issues from the command line.
 
 Run from the CLI:
 ```
-php myne doctor
+php mynorel doctor
 ```
 
 ## Features

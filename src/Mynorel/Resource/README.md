@@ -34,5 +34,5 @@ try {
 List all resources:
 
 ```bash
-php myne resource:list --user=alice
+php mynorel resource:list --user=alice
 ```
