@@ -1,4 +1,7 @@
+
 # Mynorel Framework
+
+![CI](https://github.com/mynorel/framework/actions/workflows/ci.yml/badge.svg)
 
 > **A narrative-first PHP framework for expressive, modular, and modern applications.**
 
