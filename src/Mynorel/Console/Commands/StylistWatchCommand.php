@@ -14,7 +14,7 @@ class StylistWatchCommand implements \Mynorel\Console\Contracts\CommandInterface
         $in = $input['input'] ?? null;
         $out = $input['output'] ?? null;
         if (!$type || !$in || !$out) {
-            StylizedPrinter::warn('Usage: php myne stylist:watch --type=sass --input=src.scss --output=out.css');
+            StylizedPrinter::warn('Usage: php mynorel stylist:watch --type=sass --input=src.scss --output=out.css');
             return 1;
         }
         StylizedPrinter::poetic("Watching $in for changes...");

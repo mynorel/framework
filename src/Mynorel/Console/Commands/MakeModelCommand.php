@@ -9,9 +9,9 @@ class MakeModelCommand implements \Mynorel\Console\Contracts\CommandInterface
     public function description(): string { return 'Scaffold a new model (character) for your narrative.'; }
     public function execute(array $input, array &$output): int
     {
-        $name = $input['name'] ?? null;
+        $name = $input[0] ?? null;
         if (!$name) {
-            $output[] = "No model name provided. Usage: php myne make:model Hero";
+            $output[] = "No model name provided. Usage: php mynorel make:model Hero";
             StylizedPrinter::warn($output[count($output)-1]);
             return 1;
         }

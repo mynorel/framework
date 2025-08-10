@@ -23,14 +23,14 @@ class OnboardingCommand implements \Mynorel\Console\Contracts\CommandInterface
     StylizedPrinter::info("PHP version: " . phpversion());
     StylizedPrinter::info("Mynorel version: " . (method_exists(System::class, 'version') ? System::version() : 'dev'));
     StylizedPrinter::poetic("2. Setting up your first character (model)...");
-    StylizedPrinter::info("Try: php myne make:model Hero");
+    StylizedPrinter::info("Try: php mynorel make:model Hero");
     StylizedPrinter::poetic("3. Creating your first scene (controller)...");
-    StylizedPrinter::info("Try: php myne make:controller WelcomeController");
+    StylizedPrinter::info("Try: php mynorel make:controller WelcomeController");
     StylizedPrinter::poetic("4. Exploring narrative features:");
     StylizedPrinter::info("- Use Facades: Narrative::chapter('intro'), Author::can('edit', <user>)");
-    StylizedPrinter::info("- Use CLI: php myne resource:list, php myne plugin:activate");
+    StylizedPrinter::info("- Use CLI: php mynorel resource:list, php mynorel plugin:activate");
     StylizedPrinter::info("- Use Myneral templates for narrative UI");
-    StylizedPrinter::poetic("5. See docs/README.md for more, or run 'php myne tour' for a guided demo.");
+    StylizedPrinter::poetic("5. See docs/README.md for more, or run 'php mynorel tour' for a guided demo.");
     StylizedPrinter::poetic("Onboarding complete! Your narrative begins now.");
         return 0;
     }

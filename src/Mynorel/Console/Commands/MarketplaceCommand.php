@@ -30,7 +30,7 @@ class MarketplaceCommand implements CommandInterface
         foreach ($plugins as $plugin) {
             $output[] = "- $plugin";
         }
-        $output[] = "\nTo install: php myne marketplace install <plugin>\n";
+        $output[] = "\nTo install: php mynorel marketplace install <plugin>\n";
         return 0;
     }
 }

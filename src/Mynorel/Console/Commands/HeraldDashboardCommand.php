@@ -22,7 +22,7 @@ class HeraldDashboardCommand implements CommandInterface
             return 0;
         }
         $output[] = HeraldDashboard::render();
-        $output[] = "\nTo simulate: php myne herald:dashboard simulate <channel> <event>\n";
+        $output[] = "\nTo simulate: php mynorel herald:dashboard simulate <channel> <event>\n";
         return 0;
     }
 }

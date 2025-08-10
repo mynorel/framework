@@ -14,7 +14,7 @@ class StylistCompileCommand implements \Mynorel\Console\Contracts\CommandInterfa
         $in = $input['input'] ?? null;
         $out = $input['output'] ?? null;
         if (!$type || !$in || !$out) {
-            StylizedPrinter::warn('Usage: php myne stylist:compile --type=sass --input=src.scss --output=out.css');
+            StylizedPrinter::warn('Usage: php mynorel stylist:compile --type=sass --input=src.scss --output=out.css');
             return 1;
         }
         try {

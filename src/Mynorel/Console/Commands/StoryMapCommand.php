@@ -26,7 +26,7 @@ class StoryMapCommand implements CommandInterface
         $output[] = "Exporting story map as JSON...";
         $json = StoryMapService::export();
         $output[] = $json;
-        $output[] = "\nTo import: php myne storymap import <file>\nTo summarize: php myne storymap summary\n";
+        $output[] = "\nTo import: php mynorel storymap import <file>\nTo summarize: php mynorel storymap summary\n";
         return 0;
     }
 }

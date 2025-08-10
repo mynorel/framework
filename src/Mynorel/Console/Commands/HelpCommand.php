@@ -23,7 +23,7 @@ class HelpCommand implements CommandInterface
             StylizedPrinter::print('  ' . $cmd['name'] . ' — ' . $cmd['description'], 'module');
         }
         StylizedPrinter::print('');
-        StylizedPrinter::print('Run `php myne <command>` to execute a command.', 'philosophy');
+        StylizedPrinter::print('Run `php mynorel <command>` to execute a command.', 'philosophy');
         return 0;
     }
 
