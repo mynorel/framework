@@ -113,15 +113,19 @@ class Authenticate implements PreludeInterface {
 }
 ```
 
+
 ## Integration
 
 Prelude can be used in:
 - Flows (Myneral)
+- Layouts
 - Directives
 - CLI commands
 - Routing (Narrative)
 
+Myneral templates and flows can invoke Prelude pipelines for middleware logic, authentication, and more.
+
 ---
 
-*Prelude is modular, expressive, and ready for integration with all Mynorel features.*
+*Prelude is modular, expressive, and ready for integration with all Mynorel features, including Myneral templates, flows, and layouts.*
 

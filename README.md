@@ -70,6 +70,54 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 ## ⚡ Quickstart
 
 See the docs for usage examples and guides.
+
+## Myneral Templates: Layouts, Flows, and Directives
+
+Mynorel includes a robust, Blade-like template engine called Myneral, supporting:
+- Layouts: `@layout('main')`, `@section('header')`, `@yield('content')`
+- Flows: `@flow('onboarding')` for narrative-driven UI logic
+- Directives: `@can`, `@role`, `@if`, `@show`, and custom
+- Context: Pass data to templates for dynamic rendering
+
+**Example template:**
+```blade
+@layout('main')
+@flow('onboarding')
+
+@section('header')
+	Welcome, {{ user.name }}!
+@endsection
+
+@section('content')
+	@if(user.isNew)
+		<div class="alert">Welcome to Mynorel, {{ user.name }}!</div>
+		@show('intro-tour')
+	@endif
+	@can('edit-post')
+		<button>Edit Post</button>
+	@endcan
+@endsection
+```
+
+**Registering layouts and flows:**
+```php
+use Mynorel\Myneral\Layouts\LayoutManager;
+use Mynorel\Myneral\Flows\FlowManager;
+LayoutManager::register('main', new AppLayout());
+FlowManager::register('onboarding', new OnboardingFlow());
+```
+
+**Rendering a template:**
+```php
+use Mynorel\Myneral\Myneral;
+$template = file_get_contents('resources/views/dashboard.myne');
+$context = ['user' => ['name' => 'Alice', 'isNew' => true]];
+echo Myneral::render($template, $context);
+```
+
+**Integration:**
+- Use Myneral in CLI, web, or any PHP context
+- Integrates with Prelude (middleware), Services, and Author for access control
 	```php
 	use Mynorel\Scriptorium\Scriptorium;
 	Scriptorium::singleton('bard', fn() => new Bard());

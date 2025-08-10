@@ -139,9 +139,11 @@ class AuthorizationService
 
     ## Integration
 
-    - Use services directly in flows, directives, CLI, or via facades.
+    - Use services directly in flows, layouts, directives, CLI, or via facades.
     - All services are ready for dependency injection and extension.
+    - Myneral templates can call services via custom directives or context.
+    - Example: Use AuthorizationService in a @can directive, or ThemeService in a layout.
 
     ---
 
-    *Mynorel Services are modular, composable, and ready for any business logic you need.*
+    *Mynorel Services are modular, composable, and ready for any business logic you need. Fully integrated with Myneral templates, flows, and layouts.*
