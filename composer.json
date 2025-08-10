@@ -3,6 +3,10 @@
   "description": "Mynorel: a narrative-first PHP framework with expressive architecture and directive syntax.",
   "type": "library",
   "license": "MIT",
+  "support": {
+    "issues": "https://github.com/mynorel/framework/issues",
+    "source": "https://github.com/mynorel/framework"
+  },
   "authors": [
     {
       "name": "Jade Monathrae Lewis",
