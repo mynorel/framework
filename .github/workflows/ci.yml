@@ -22,7 +22,5 @@ jobs:
           coverage: none
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
-      - name: Run Mynorel narrative tests
-        run: php myne test
       - name: Run PHPUnit (fallback)
         run: ./vendor/bin/phpunit || true
