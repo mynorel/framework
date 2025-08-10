@@ -1,7 +1,9 @@
 # Mynorel Framework
 
+
 <div align="center">
 	<img alt="CI" src="https://github.com/mynorel/framework/actions/workflows/ci.yml/badge.svg" />
+	<img alt="Packagist" src="https://img.shields.io/packagist/v/mynorel/framework.svg" />
 	<img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" />
 </div>
 
@@ -69,9 +71,29 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 
 ---
 
+
+## ⚡ Installation
+
+Install Mynorel via Composer:
+
+```bash
+composer create-project mynorel/framework my-app
+```
+
+Or add to an existing project:
+
+```bash
+composer require mynorel/framework
+```
+
 ## ⚡ Quickstart
 
-See the docs for usage examples and guides.
+See the docs for usage examples and guides, or start your first app:
+
+```bash
+cd my-app
+php myne new
+```
 
 ## Myneral Templates: Layouts, Flows, and Directives
 
