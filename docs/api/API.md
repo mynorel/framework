@@ -37,11 +37,11 @@ Flow: Defines a sequence of directives for a narrative flow.
 - `sequence`: `array`
 
 ### Public Methods
-- ```php
+```php
 __construct(array $sequence)
 ```
 
-- ```php
+```php
 sequence(): array
 ```
 
@@ -56,15 +56,15 @@ sequence(): array
 - `flows`: `array`
 
 ### Public Methods
-- ```php
+```php
 static register(string $name, Mynorel\Myneral\Flows\Flow $flow): void
 ```
 
-- ```php
+```php
 static get(string $name): ?Mynorel\Myneral\Flows\Flow
 ```
 
-- ```php
+```php
 static validate(string $name): array
 ```
 Validate a flow: check that all directives in the flow are registered in Myneral.
@@ -85,17 +85,17 @@ Registers and executes commands, providing a narrative CLI experience.
 - `commands`: `array`
 
 ### Public Methods
-- ```php
+```php
 __construct()
 ```
 
-- ```php
+```php
 register(Mynorel\Console\Contracts\CommandInterface $command): void
 ```
 Register a command.
 @param CommandInterface $command
 
-- ```php
+```php
 run(string $name, array $input = array (
 )): int
 ```
@@ -104,14 +104,14 @@ Run a command by name.
 @param array $input
 @return int Exit code
 
-- ```php
+```php
 list(): array
 ```
 List all registered commands.
 @return array
 
 ### Protected Methods
-- ```php
+```php
 registerDefaults(): void
 ```
 Register default Mynorel commands.
@@ -130,17 +130,17 @@ Jobs are "epics" and background tasks are "side quests."
 - `epics`: `array`
 
 ### Public Methods
-- ```php
+```php
 static register(string $name, callable $callback): void
 ```
 Register a new epic (job/task).
 
-- ```php
+```php
 static list(): array
 ```
 List all registered epics.
 
-- ```php
+```php
 static start(string $name, $args): void
 ```
 Start an epic (job/task).
@@ -160,27 +160,27 @@ Skins are narrative themes for your app’s presentation.
 - `active`: `?string`
 
 ### Public Methods
-- ```php
+```php
 static register(string $name, callable $formatter): void
 ```
 Register a new skin.
 
-- ```php
+```php
 static list(): array
 ```
 List all registered skins.
 
-- ```php
+```php
 static active(): ?string
 ```
 Get the active skin name.
 
-- ```php
+```php
 static activate(string $name): void
 ```
 Set the active skin.
 
-- ```php
+```php
 static format(string $text): string
 ```
 Format output using the active skin.
@@ -201,27 +201,27 @@ Casts, stores, and retrieves story elements (services, characters, props).
 - `instances`: `array`
 
 ### Public Methods
-- ```php
+```php
 static bind(string $name, callable $resolver): void
 ```
 Bind a service (transient).
 
-- ```php
+```php
 static singleton(string $name, callable $resolver): void
 ```
 Bind a singleton (shared instance).
 
-- ```php
+```php
 static make(string $name, $args)
 ```
 Resolve a service or singleton.
 
-- ```php
+```php
 static has(string $name): bool
 ```
 Check if a binding exists.
 
-- ```php
+```php
 static clear(): void
 ```
 Clear all bindings and instances (for testing).
@@ -234,15 +234,15 @@ Clear all bindings and instances (for testing).
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
@@ -256,15 +256,15 @@ InstallCommand: Installs Mynorel core and modules.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -278,15 +278,15 @@ PhilosophyCommand: Shares Mynorel's philosophy and narrative approach.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -300,15 +300,15 @@ ChapterListCommand: Lists all chapters (routes) in the narrative.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -322,15 +322,15 @@ PlotlineCommand: Maps out the plotlines (models/ORM) in the application.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -344,15 +344,15 @@ LogCommand: Outputs the narrative log (Chronicle) in poetic style.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -366,15 +366,15 @@ JournalCommand: Outputs a developer journal from the Chronicle log.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -388,15 +388,15 @@ ManifestCommand: Introspect framework modules and meta-information.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -410,15 +410,15 @@ ListCommand: Lists all available CLI commands.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -432,15 +432,15 @@ HelpCommand: Shows help for all CLI commands.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -454,15 +454,15 @@ FlowValidateCommand: Validates a named flow and reports missing directives.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -476,15 +476,15 @@ TestCommand: Runs the Mynorel test suite with narrative output.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
@@ -496,15 +496,15 @@ description(): string
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
@@ -516,15 +516,15 @@ execute(array $input, array $output): int
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
@@ -536,15 +536,15 @@ execute(array $input, array $output): int
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
@@ -556,15 +556,15 @@ execute(array $input, array $output): int
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 Execute the command.
@@ -582,15 +582,15 @@ HeraldCommand: CLI for real-time narrative (WebSocket) operations.
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
@@ -602,15 +602,15 @@ execute(array $input, array $output): int
 **Namespace:** `Mynorel\Console\Commands`
 
 ### Public Methods
-- ```php
+```php
 name(): string
 ```
 
-- ```php
+```php
 description(): string
 ```
 
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 
@@ -624,7 +624,7 @@ CommandInterface: Contract for all Mynorel console commands.
 **Namespace:** `Mynorel\Console\Contracts`
 
 ### Public Methods
-- ```php
+```php
 execute(array $input, array $output): int
 ```
 Execute the command.
@@ -632,13 +632,13 @@ Execute the command.
 @param array $output
 @return int Exit code
 
-- ```php
+```php
 name(): string
 ```
 Get the command's name (e.g., 'install', 'chapter:list').
 @return string
 
-- ```php
+```php
 description(): string
 ```
 Get a short description of the command.
