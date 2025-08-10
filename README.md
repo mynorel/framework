@@ -22,6 +22,7 @@ Mynorel lets you build your app as a story: every model is a character, every re
 
 ---
 
+
 ## 📚 Documentation
 
 - [docs/README.md](docs/README.md) — Start here for all framework docs
@@ -31,6 +32,7 @@ Mynorel lets you build your app as a story: every model is a character, every re
 - [docs/theming.md](docs/theming.md) — Theming and UI
 - [docs/testing.md](docs/testing.md) — Testing and QA
 - [docs/architecture.md](docs/architecture.md) — Architecture overview
+- [docs/api/API.md](docs/api/API.md) — Auto-generated API Reference
 
 ---
 
