@@ -78,7 +78,27 @@ class Myneral {
                 $template
             );
 
-            // 2. (No-op) Compile directives (block and inline) - not implemented, skip for now
+            // 2. Compile registered directives (inline only, e.g. @lang, @asset)
+            $template = preg_replace_callback(
+                '/@(\w+)\(([^)]*)\)/',
+                function ($matches) use ($context) {
+                    $name = strtolower($matches[1]);
+                    $args = array_map(function($v) {
+                        $v = trim($v);
+                        return trim($v, "'\"");
+                    }, str_getcsv($matches[2]));
+                    $directives = self::getDirectives();
+                    if (isset($directives[$name])) {
+                        try {
+                            return $directives[$name]->compile($args, $context);
+                        } catch (\Throwable $e) {
+                            return '<!-- Mynorel directive error: ' . htmlspecialchars($e->getMessage()) . ' -->';
+                        }
+                    }
+                    return '<!-- Unknown directive: @' . $name . ' -->' . $matches[0];
+                },
+                $template
+            );
 
             // 3. Replace escaped output: {{{ ... }}} (raw, unescaped)
             $template = preg_replace_callback(
@@ -101,7 +121,7 @@ class Myneral {
             // 5. Compile PHP tags
             $template = preg_replace('/@php(.*?)@endphp/s', '<?php$1?>', $template);
 
-            // 6. Error handling: annotate unknown directives
+            // 6. Error handling: annotate unknown directives (block only)
             $template = preg_replace_callback(
                 '/@(\w+)/',
                 function ($matches) {
@@ -119,15 +139,21 @@ class Myneral {
             );
 
             // 7. Context isolation and error handler as a single PHP block
-            $contextVars = array_keys($context);
-            $contextCode = '';
-            foreach ($contextVars as $var) {
-                if (preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $var)) {
-                    $contextCode .= '$' . $var . ' = $context["' . $var . '"] ?? null;\n';
+            // Only wrap with PHP context block if PHP code is present
+            if (strpos($template, '<?php') !== false) {
+                $contextVars = array_keys($context);
+                $contextCode = '';
+                foreach ($contextVars as $var) {
+                    if (preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $var)) {
+                        $contextCode .= '$' . $var . ' = $context["' . $var . '"] ?? null;\n';
+                    }
                 }
+                $compiled = "<?php\n// Context isolation\n" . $contextCode . "set_error_handler(function(\n    \$errno, \$errstr, \$errfile, \$errline\n) {\n    echo '<!-- Mynorel error: ' . htmlspecialchars((string)\$errstr) . ' in ' . htmlspecialchars((string)\$errfile) . ' on line ' . \$errline . ' -->';\n    return true;\n});\n?>\n" . $template . "<?php restore_error_handler(); ?>";
+                return $compiled;
+            } else {
+                // Fully resolved, return as-is
+                return $template;
             }
-            $compiled = "<?php\n// Context isolation\n" . $contextCode . "set_error_handler(function(\n    \$errno, \$errstr, \$errfile, \$errline\n) {\n    echo '<!-- Mynorel error: ' . htmlspecialchars((string)\$errstr) . ' in ' . htmlspecialchars((string)\$errfile) . ' on line ' . \$errline . ' -->';\n    return true;\n});\n?>\n" . $template . "<?php restore_error_handler(); ?>";
-            return $compiled;
         } catch (\Throwable $e) {
             return '<!-- Mynorel compile error: ' . htmlspecialchars($e->getMessage()) . ' -->';
         }

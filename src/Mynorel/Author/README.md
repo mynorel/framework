@@ -1,49 +1,61 @@
-# Mynorel Authorization Layer (Author)
 
-The Author layer is Mynorel's expressive authorization system. It determines who can write, edit, or view parts of the application's story, using narrative metaphors:
-- **Roles** are characters (e.g., scribe, editor, reader, curator)
-- **Policies** are plotlines (access rules as story arcs)
-- **Permissions** are abilities (actions characters can perform)
+# Mynorel Author: Narrative User & Auth System
 
-Works seamlessly with Myneral's directive syntax to guard flows, layouts, or components. Integrates with Chronicle for logging authorization decisions.
+The Author module manages all aspects of users in Mynorel, including authentication, registration, session management, roles, and permissions. All logic is narrative-driven and fully integrated with Mynorel's config, services, and extension system.
+
+## Features
+- Author (user) creation and management
+- Authentication (login, logout, session)
+- Registration
+- Role and permission assignment and checks
+- Policies as plotlines (access rules as story arcs)
+- Integration with narrative, policy, and Chronicle layers
+
+## Philosophy
+Authors are the main actors in the narrative. Authentication, roles, and permissions are part of their story, not just technical details. All logic is modular, extensible, and narrative-centric.
+
+## Authentication & Session Integration
+
+Mynorel's Auth logic is now part of the Author module:
+
+```php
+use Mynorel\Author\AuthService;
+
+// Attempt login
+if (AuthService::attempt('admin', 'password')) {
+    // Authenticated!
+}
+
+// Register a new author (stub, replace with real logic)
+AuthService::register('newuser', 'secret');
+
+// Get current user
+$author = AuthService::user();
+
+// Check role
+if (AuthService::hasRole('admin')) {
+    // Has admin role
+}
+
+// Logout
+AuthService::logout();
+```
+
+The AuthService uses session to persist the user's identity between requests. Replace the stub logic with your own persistence as needed.
+
 
 ## Architecture
 
-- `Author` — Main facade for defining and checking abilities
-- `Gate` — Internal permission/denial registry and checker
+- `AuthService.php` — Handles authentication, registration, session, and role logic
+- `Author.php` — Facade for defining/checking abilities
+- `Gate.php` — Internal permission/denial registry and checker
 - `Roles/Role.php` — Role value object
 - `Policies/Policy.php` — Base policy class
 - `Contracts/PolicyInterface.php` — Policy contract
 - `Policies/EditPostPolicy.php` — Example policy
 
 
-## Authentication (Auth) & Session Integration
-
-Mynorel's Auth layer provides narrative user authentication, now integrated with the Session layer for persistent login:
-
-```php
-use Mynorel\Author\Auth;
-use Mynorel\Session\Session;
-
-// Attempt login
-$success = Auth::attempt($userResolver, $identifier, $password);
-
-// Get the current user (restores from session if available)
-$user = Auth::user($userResolver);
-
-// Check if a user is authenticated
-if (Auth::check()) {
-    // ...
-}
-
-// Log out
-Auth::logout();
-```
-
-The Auth layer uses Session to persist the user's identity between requests. Implement the `Authenticatable` contract on your user model to enable authentication.
-
----
-## Usage
+## Authorization & Policy Usage
 
 ```php
 // Grant and deny abilities to roles

@@ -9,22 +9,26 @@ namespace Mynorel\Config;
  *   Config::set('my.custom', 'value');
  *   Config::all();
  */
+
 class Config
 {
     protected static array $items = [];
     protected static bool $loaded = false;
+    protected static bool $loading = false;
 
     /**
      * Load all config files from /config directory.
      */
-    public static function load(string $configDir = null): void
+    public static function load(?string $configDir = null): void
     {
         if (self::$loaded) return;
+        self::$loading = true;
         $configDir = $configDir ?: dirname(__DIR__, 3) . '/config';
         foreach (glob($configDir . '/*.php') as $file) {
             $key = basename($file, '.php');
             self::$items[$key] = require $file;
         }
+        self::$loading = false;
         self::$loaded = true;
     }
 
@@ -33,6 +37,11 @@ class Config
      */
     public static function get(string $key, $default = null)
     {
+        // Prevent recursion: if called during config load, return only environment/defaults
+        if (self::$loading) {
+            // Only allow getenv fallback or static default
+            return $default;
+        }
         self::load();
         $segments = explode('.', $key);
         $value = self::$items;
