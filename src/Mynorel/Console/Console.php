@@ -119,7 +119,7 @@ class Console
         return [1, $output];
     }
 
-    // Legacy run for compatibility
+    // Legacy run for compatibility (programmatic use)
     public function run(string $name, array $input = []): int
     {
         $output = [];
@@ -129,6 +129,14 @@ class Console
         echo "[error] Command '$name' not found.\n";
         return 1;
     }
+
+    //  Cli Initializer For Projects
+    public function runCli(array $argv): int {
+        $name = $argv[1] ?? 'help';
+        $input = []; // Optionally parse more args here
+        return $this->run($name, $input);
+    }
+
 
     /**
      * List all registered commands.
