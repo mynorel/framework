@@ -13,8 +13,8 @@ class ViewTest extends TestCase
                 @unlink($file);
             }
         }
-        \Mynorel\Myneral\Myneral::clearDirectives();
-        \Mynorel\Myneral\Myneral::registerDefaults();
+        Myneral::clearDirectives();
+        Myneral::registerDefaults();
     }
     protected function debugDirectivesAndTokens($template)
     {
