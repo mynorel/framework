@@ -11,8 +11,9 @@ class ExtensionServiceProvider
      */
     public static function registerAndBootFromConfig(): void
     {
-        $config = require __DIR__ . '/../../../config/extensions.php';
-        foreach ($config as $class) {
+        // Use the Config Facade for extension config
+        $extensions = \Mynorel\Facades\Config::get('extensions', []);
+        foreach ($extensions as $class) {
             ExtensionManager::register($class);
         }
         ExtensionManager::bootAll();

@@ -15,6 +15,10 @@ class SystemService
 
     public static function environment(): string
     {
+        // Use Mynorel Config layer for environment
+        if (class_exists('Mynorel\\Config\\Config')) {
+            return \Mynorel\Config\Config::get('app.env', 'production');
+        }
         return getenv('APP_ENV') ?: 'production';
     }
 }

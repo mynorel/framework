@@ -1,9 +1,12 @@
 <?php
 // config/app.php
 
+
+use Mynorel\Config\Config;
+
 return [
     'name' => 'Mynorel',
-    'env' => getenv('APP_ENV') ?: 'production',
-    'debug' => getenv('APP_DEBUG') === 'true',
-    'url' => getenv('APP_URL') ?: 'http://localhost',
+    'env' => Config::get('app.env', getenv('APP_ENV') ?: 'production'),
+    'debug' => Config::get('app.debug', getenv('APP_DEBUG') === 'true'),
+    'url' => Config::get('app.url', getenv('APP_URL') ?: 'http://localhost'),
 ];
