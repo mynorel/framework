@@ -86,6 +86,20 @@ Or add to an existing project:
 composer require mynorel/framework
 ```
 
+## 🏗️ Start a New Mynorel App Instantly
+
+The official Mynorel application skeleton is now available!
+
+Create a new project with one command:
+
+```bash
+composer create-project mynorel/mynorel my-app
+```
+
+This will set up a ready-to-use, narrative-driven app structure with Myneral templates, themes, CLI, and onboarding.
+
+---
+
 ## ⚡ Quickstart
 
 See the docs for usage examples and guides, or start your first app:
