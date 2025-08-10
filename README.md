@@ -298,4 +298,6 @@ Mynorel is MIT licensed. Crafted with narrative and care.
 
 ---
 
-**Author:** Jade Monathrae Lewis (<jadelewis@mynorel.dev>)
+<div align="center">
+	<strong>Author:</strong> Jade Monathrae Lewis (<jadelewis@mynorel.dev>)
+</div>
