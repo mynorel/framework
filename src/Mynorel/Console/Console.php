@@ -74,6 +74,15 @@ class Console
     $this->register(new \Mynorel\Console\Commands\HeraldCommand());
     $this->register(new \Mynorel\Console\Commands\DocsGenerateCommand());
     $this->register(new \Mynorel\Console\Commands\ViewRenderCommand());
+    // Register new feature commands
+    $this->register(new \Mynorel\Console\Commands\DoctorCommand());
+    $this->register(new \Mynorel\Console\Commands\MarketplaceCommand());
+    $this->register(new \Mynorel\Console\Commands\StoryMapCommand());
+    $this->register(new \Mynorel\Console\Commands\HeraldDashboardCommand());
+    $this->register(new \Mynorel\Console\Commands\SnapshotTestCommand());
+    $this->register(new \Mynorel\Console\Commands\MutationTestCommand());
+    $this->register(new \Mynorel\Console\Commands\HotReloadCommand());
+    $this->register(new \Mynorel\Console\Commands\AcademyCommand());
     // New feature commands
     $this->register(new \Mynorel\Console\Commands\ResourceListCommand());
     $this->register(new \Mynorel\Console\Commands\PluginListCommand());

@@ -43,14 +43,21 @@ Mynorel is built for narrative clarity, modularity, and developer delight.
 - **Prelude Middleware:** Modular pipelines, global and per-sequence, with narrative metaphors.
 - **Services Layer:** Business logic, logging, authorization, theming, and more—injectable and extendable.
 - **Facades:** Thin, expressive, and delegate to services for testability and flexibility.
-- **CLI & Console:** Powerful command system for developer tools, automation, and narrative test running.
+- **CLI & Console:** Powerful command system for developer tools, automation, and narrative test running. Now with interactive wizards, command history, and narrative logging.
+- **Testing:** Snapshot testing, mutation testing, and a narrative web test runner for robust QA.
+- **Myneral Templates:** Hot-reload, partials/macros, and visual template preview for rapid UI development.
+- **Plugin Marketplace:** Discover, install, and manage plugins with dependency/version support.
+- **Herald Dashboard:** Real-time dashboard for events, channels, and live narrative updates.
+- **Story Mapping:** Visual story map/flowchart generator and branching narrative support.
+- **Dev Tools:** VS Code extension for syntax/snippets, Mynorel Doctor CLI for diagnostics, and code generators.
+- **Academy:** Interactive onboarding, tutorials, and narrative-driven challenges for mastery.
 - **Configuration:** All config in `/config`, environment-driven, no magic.
 - **PSR-4 Autoloading:** Modern, Composer-based, no require_once.
 - **Extension System:** Register and load plugins ("side stories") at runtime via the ExtensionManager.
 - **Sentinels & Rituals:** Expressive guards and handlers with contracts for custom workflows.
 - **Scriptorium (Service Container):** Narrative dependency injection and service management for all story elements.
 - **Ready for plugins, DI, and extension.**
-- **Stylist:** Universal CSS compiler, theming, and asset pipeline
+- **Stylist:** Universal CSS compiler, theming, and asset pipeline, now with PostCSS plugin support and theme live preview.
 
 ---
 
