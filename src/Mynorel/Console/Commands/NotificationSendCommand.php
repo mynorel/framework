@@ -11,7 +11,7 @@ class NotificationSendCommand implements \Mynorel\Console\Contracts\CommandInter
 {
     public function name(): string { return 'notification:send'; }
     public function description(): string { return 'Send a notification to a user.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         $user = $input['user'] ?? null;
         $message = $input['message'] ?? null;

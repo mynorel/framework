@@ -7,7 +7,7 @@ class TourCommand implements \Mynorel\Console\Contracts\CommandInterface
 {
     public function name(): string { return 'tour'; }
     public function description(): string { return 'Take a guided tour of Mynorel features.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         StylizedPrinter::poetic("Welcome to the Mynorel Tour!");
         StylizedPrinter::info("1. Models are characters. Try: php myne make:model Hero");

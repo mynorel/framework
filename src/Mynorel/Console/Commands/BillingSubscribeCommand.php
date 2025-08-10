@@ -11,7 +11,7 @@ class BillingSubscribeCommand implements \Mynorel\Console\Contracts\CommandInter
 {
     public function name(): string { return 'billing:subscribe'; }
     public function description(): string { return 'Subscribe a user to a plan.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         $user = $input['user'] ?? null;
         $plan = $input['plan'] ?? null;

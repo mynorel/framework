@@ -11,7 +11,7 @@ class PluginListCommand implements \Mynorel\Console\Contracts\CommandInterface
 {
     public function name(): string { return 'plugin:list'; }
     public function description(): string { return 'List all plugins and themes.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         $user = $input['user'] ?? null;
         if (!Validator::require($user, 'user', 'plugin:list')) {

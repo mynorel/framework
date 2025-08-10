@@ -86,7 +86,7 @@ class Myneral {
                     $args = array_map(function($v) {
                         $v = trim($v);
                         return trim($v, "'\"");
-                    }, str_getcsv($matches[2]));
+                    }, str_getcsv($matches[2], ",", "'", "\\"));
                     $directives = self::getDirectives();
                     if (isset($directives[$name])) {
                         try {

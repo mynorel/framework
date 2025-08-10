@@ -11,7 +11,7 @@ class SearchQueryCommand implements \Mynorel\Console\Contracts\CommandInterface
 {
     public function name(): string { return 'search:query'; }
     public function description(): string { return 'Search the narrative and resources.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         $user = $input['user'] ?? null;
         $query = $input['query'] ?? null;

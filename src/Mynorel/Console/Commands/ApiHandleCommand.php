@@ -11,7 +11,7 @@ class ApiHandleCommand implements \Mynorel\Console\Contracts\CommandInterface
 {
     public function name(): string { return 'api:handle'; }
     public function description(): string { return 'Handle an API request.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         $user = $input['user'] ?? null;
         $request = $input['request'] ?? null;

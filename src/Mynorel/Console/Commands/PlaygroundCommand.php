@@ -7,7 +7,7 @@ class PlaygroundCommand implements \Mynorel\Console\Contracts\CommandInterface
 {
     public function name(): string { return 'playground'; }
     public function description(): string { return 'Open an interactive Mynorel playground shell.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         StylizedPrinter::poetic("Welcome to the Mynorel Playground! Type PHP code to experiment with the framework. Type 'exit' to leave.");
         while (true) {

@@ -11,7 +11,7 @@ class CloudDeployCommand implements \Mynorel\Console\Contracts\CommandInterface
 {
     public function name(): string { return 'cloud:deploy'; }
     public function description(): string { return 'Deploy an app to a cloud provider.'; }
-    public function execute(array $input, array $output): int
+    public function execute(array $input, array &$output): int
     {
         $user = $input['user'] ?? null;
         $app = $input['app'] ?? null;
